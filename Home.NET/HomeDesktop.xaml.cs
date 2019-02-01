@@ -26,7 +26,10 @@ namespace Home.NET
             Home.NET.Stuff.PickColor Pick = new Stuff.PickColor(Colors.Green, true);
             if((bool)Pick.ShowDialog())
             {
-                this.Background = new SolidColorBrush(Pick.ResultColor);
+                if (Pick.ResultIsAero)
+                    Tiles.DwmApi.Glass(this);
+                else
+                    this.Background = new SolidColorBrush(Pick.ResultColor);
             }
         }
     }
