@@ -54,15 +54,18 @@ namespace Home.NET.Tiles
             InitializeComponent();
 
             ShowTestGrid = false;
-
-            for (int i = 0; i < 15; i++)
-                AddTestTile();
         }
 
         public void AddTile(Tile tile)
         {
             tile.TileStyle = PanelStyle;
             tile.TileScale = PanelScale;
+
+            var pos = GetPositionForNewTile();
+
+            MainGrid.Children.Add(tile);
+
+            tile.Margin = new Thickness(pos.X, pos.Y, 0, 0);
         }
 
         public void DeleteTile(Tile tile)
@@ -70,9 +73,11 @@ namespace Home.NET.Tiles
 
         }
 
-        public void AddTestTile()
+        public void AddTestTile(string text)
         {
             TileInfo i = new TileInfo();
+            i.Text = text;
+            i.Image = new TileImage() { ColorByte = new byte[] { 255, (byte)new Random().Next(0, 255), (byte)new Random().Next(0, 255), (byte)new Random().Next(0, 255) } };
             i.Size = Tile.TileSizes.Normal;
         }
 
@@ -140,6 +145,12 @@ namespace Home.NET.Tiles
             {
                 return TilesList.ToArray();
             }
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            for (int i = 0; i < 15; i++)
+                AddTestTile("Test Tile " + i);
         }
     }
 
