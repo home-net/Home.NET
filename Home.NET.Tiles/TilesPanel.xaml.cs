@@ -23,7 +23,10 @@ namespace Home.NET.Tiles
         {
             InitializeComponent();
 
-            ShowTestGrid = true;
+            ShowTestGrid = false;
+
+            for (int i = 0; i < 15; i++)
+                AddTestTile();
         }
 
         public void AddTile(Tile tile)
@@ -34,6 +37,12 @@ namespace Home.NET.Tiles
         public void DeleteTile(Tile tile)
         {
 
+        }
+
+        public void AddTestTile()
+        {
+            TileInfo i = new TileInfo();
+            i.Scale = 1;
         }
 
         public bool ShowTestGrid

@@ -131,9 +131,9 @@ namespace Home.NET.Tiles
     [Serializable]
     public class TileInfo
     {
-        public double Scale;
-        public Tile.TileStyles Style;
-        public Tile.TileSizes Size;
+        public double Scale = 1;
+        public Tile.TileStyles Style = Tile.TileStyles.Metro;
+        public Tile.TileSizes Size = Tile.TileSizes.Normal;
 
 
         public TileInfo() { }
