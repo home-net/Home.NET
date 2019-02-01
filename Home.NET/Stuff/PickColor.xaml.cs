@@ -68,7 +68,7 @@ namespace Home.NET.Stuff
 
         private void OKBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (rbAero.IsEnabled)
+            if ((bool)rbAero.IsChecked)
                 ResultIsAero = true;
 
             this.DialogResult = true;
