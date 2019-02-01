@@ -22,9 +22,13 @@ namespace Home.NET
         public HomeDesktop()
         {
             InitializeComponent();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
 
             Home.NET.Stuff.PickColor Pick = new Stuff.PickColor(Colors.Green, true);
-            if((bool)Pick.ShowDialog())
+            if ((bool)Pick.ShowDialog())
             {
                 if (Pick.ResultIsAero)
                     Tiles.DwmApi.Glass(this);
