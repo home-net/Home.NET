@@ -70,7 +70,7 @@ namespace Home.NET.Tiles
 
         public void DeleteTile(Tile tile)
         {
-
+            MainGrid.Children.Remove(tile);
         }
 
         public void AddTestTile(string text)
