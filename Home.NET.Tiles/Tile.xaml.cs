@@ -38,9 +38,9 @@ namespace Home.NET.Tiles
         public static Size EnumToSize(TileSizes size)
         {
             if (size == TileSizes.Small)
-                return new Size(57, 57);
+                return new Size(56, 56);
             else if (size == TileSizes.Normal)
-                return new Size(128, 128);
+                return new Size(120, 128);
             else if (size == TileSizes.Wide)
                 return new Size(256, 128);
             else if (size == TileSizes.Big)
@@ -51,9 +51,9 @@ namespace Home.NET.Tiles
 
         public static TileSizes SizeToEnum(Size size)
         {
-            if (size.Width == 57 && size.Height == 57)
+            if (size.Width == 56 && size.Height == 56)
                 return TileSizes.Small;
-            else if (size.Width == 128 && size.Height == 128)
+            else if (size.Width == 120 && size.Height == 128)
                 return TileSizes.Normal;
             else if (size.Width == 256 && size.Height == 128)
                 return TileSizes.Wide;

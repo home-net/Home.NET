@@ -78,21 +78,37 @@ namespace Home.NET.Tiles
 
         public void AddTile(Tile tile)
         {
+
             tile.TileStyle = PanelStyle;
             tile.TileScale = PanelScale;
 
-            //var pos = GetPositionForNewTile();
-            tile.Margin = new Thickness(16 * PanelScale);
+            UIElement obj = tile;
 
-            MainGrid.Children.Add(tile);
+            if (tile.TileSize == Tile.TileSizes.Small)
+            {
+                var container = new TileContainer();
 
+                container.ContainerType = TileContainer.ContainerTypes.SmallToNormal;
+                container.ContainerPanel.Children.Add(tile);
 
-            //Canvas.SetLeft(tile, pos.X);
-            //Canvas.SetTop(tile, pos.Y);
-            //tile.HorizontalAlignment = HorizontalAlignment.Left;
-            //tile.VerticalAlignment = VerticalAlignment.Top;
+                obj = container;
+            }
+            else if (tile.TileSize == Tile.TileSizes.Normal)
+            {
+                var container = new TileContainer();
 
-            //tile.Margin = new Thickness(pos.X, pos.Y, 0, 0);
+                container.ContainerType = TileContainer.ContainerTypes.NormalToWide;
+                container.ContainerPanel.Children.Add(tile);
+
+                obj = container;
+            }
+
+            if (obj is Tile)
+                (obj as Tile).Margin = new Thickness((16 / 2) * PanelScale);
+            else if (obj is TileContainer)
+                (obj as TileContainer).Margin = new Thickness((16 / 2) * PanelScale);
+
+            MainGrid.Children.Add(obj);
         }
 
         public void DeleteTile(Tile tile)
@@ -108,6 +124,7 @@ namespace Home.NET.Tiles
             TileInfo i = new TileInfo();
             i.Text = text;
             i.Image = new TileImage() { ColorByte = new byte[] { 255, (byte)c.Next(0, 255), (byte)c.Next(0, 255), (byte)c.Next(0, 255) } };
+            
             i.Size = (Tile.TileSizes)c.Next(1, 3);
 
             AddTile(new Tile(i));
@@ -148,27 +165,27 @@ namespace Home.NET.Tiles
             }
         }
 
-        public TileOnPanelInfo GetPositionForNewTile()
-        {
-            Size size = Tile.EnumToSize(Tile.TileSizes.Normal); // 128x128
-            int padding = 16;
-            int x = 30, y = 30;
+        //public TileOnPanelInfo GetPositionForNewTile()
+        //{
+        //    Size size = Tile.EnumToSize(Tile.TileSizes.Normal); // 128x128
+        //    int padding = 16 / 2;
+        //    int x = 30, y = 30;
 
-            foreach(var tile in TilesList)
-            {
-                Point tilePoint = new Point((int)Canvas.GetLeft(tile), (int)Canvas.GetTop(tile));
-                Point newTile = new Point(x, y);
+        //    foreach(var tile in TilesList)
+        //    {
+        //        Point tilePoint = new Point((int)Canvas.GetLeft(tile), (int)Canvas.GetTop(tile));
+        //        Point newTile = new Point(x, y);
 
-                if (tilePoint == newTile)
-                {
-                    y += padding / 2 + (int)size.Height;
-                }
-                else
-                    break;
-            }
+        //        if (tilePoint == newTile)
+        //        {
+        //            y += padding;// + (int)tile.Height;
+        //        }
+        //        else
+        //            break;
+        //    }
 
-            return new TileOnPanelInfo() { X = x, Y = y };
-        }
+        //    return new TileOnPanelInfo() { X = x, Y = y };
+        //}
 
         public List<Tile> TilesList
         {
@@ -221,4 +238,5 @@ namespace Home.NET.Tiles
         public Size Size;
         public TileInfo TileInfo;
     }
+    
 }

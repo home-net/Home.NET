@@ -12,8 +12,8 @@
         </Grid>
         <Grid x:Name="BackMainGrid">
             <ScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto">
-                <!-- Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ScrollViewer}}, Path=ActualWidth}" !-->
-                <WrapPanel x:Name="MainGrid">
+                <!--  !-->
+                <WrapPanel x:Name="MainGrid" Orientation="Vertical">
                 </WrapPanel>
             </ScrollViewer>
         </Grid>
