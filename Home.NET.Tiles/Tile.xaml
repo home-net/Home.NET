@@ -6,10 +6,16 @@
              xmlns:local="clr-namespace:Home.NET.Tiles"
              xmlns:stuff="clr-namespace:Home.NET.Tiles.Stuff"
              mc:Ignorable="d" 
-             d:DesignHeight="256" d:DesignWidth="256">
+             d:DesignHeight="128" d:DesignWidth="128">
     <Grid>
+        <Grid x:Name="GridCollision" Background="#FF191919" MouseLeftButtonUp="GridCollision_MouseLeftButtonUp"></Grid>
         <Grid x:Name="BorderGrid" IsHitTestVisible="False">
             <stuff:BorderMetro></stuff:BorderMetro>
+        </Grid>
+        <Grid x:Name="GridName" IsHitTestVisible="False" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="10,0,0,0" Height="25" >
+            <TextBlock FontFamily="Segoe UI Light" Text="Tile Text" Foreground="White" Margin="0">
+
+            </TextBlock>
         </Grid>
     </Grid>
 </UserControl>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -79,7 +80,10 @@ namespace Home.NET.Tiles
             TileStyle = info.Style;
             TileScale = info.Scale;
             TileSize = info.Size;
+            TileAction = info.Action;
         }
+
+        public TileAction TileAction = new TileAction();
 
         public double TileScale
         {
@@ -126,6 +130,10 @@ namespace Home.NET.Tiles
             }
         }
 
+        private void GridCollision_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            TileAction.Do();
+        }
     }
 
     [Serializable]
@@ -134,6 +142,8 @@ namespace Home.NET.Tiles
         public double Scale = 1;
         public Tile.TileStyles Style = Tile.TileStyles.Metro;
         public Tile.TileSizes Size = Tile.TileSizes.Normal;
+        public string Text = "Tile";
+        public TileAction Action = new TileAction();
 
 
         public TileInfo() { }
@@ -142,6 +152,30 @@ namespace Home.NET.Tiles
             Scale = tile.TileScale;
             Style = tile.TileStyle;
             Size = tile.TileSize;
+        }
+    }
+
+    [Serializable]
+    public class TileAction
+    {
+        public enum Actions
+        {
+            None,
+            ProcessStart,
+            ReflectionInvoke
+        }
+
+        public Actions Action = Actions.None;
+
+        public string ProcessStartName = "";
+        public string ProcessStartArguments = "";
+
+        public string NETInvoke = "";
+
+        public void Do()
+        {
+            if (Action == Actions.ProcessStart)
+                Process.Start(ProcessStartName, ProcessStartArguments);
         }
     }
 }
