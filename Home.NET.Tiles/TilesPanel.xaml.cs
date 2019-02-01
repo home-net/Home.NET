@@ -19,6 +19,36 @@ namespace Home.NET.Tiles
     /// </summary>
     public partial class TilesPanel : UserControl
     {
+        private Tile.TileStyles panelStyle = Tile.TileStyles.Metro;
+        public Tile.TileStyles PanelStyle
+        {
+            get => panelStyle;
+            set
+            {
+                panelStyle = value;
+
+                foreach (var tile in TilesList)
+                {
+                    tile.TileStyle = value;
+                }
+            }
+        }
+
+        private double panelScale = 1;
+        public double PanelScale
+        {
+            get => panelScale;
+            set
+            {
+                panelScale = value;
+
+                foreach (var tile in TilesList)
+                {
+                    tile.TileScale = value;
+                }
+            }
+        }
+
         public TilesPanel()
         {
             InitializeComponent();
@@ -31,7 +61,8 @@ namespace Home.NET.Tiles
 
         public void AddTile(Tile tile)
         {
-            
+            tile.TileStyle = PanelStyle;
+            tile.TileScale = PanelScale;
         }
 
         public void DeleteTile(Tile tile)
@@ -42,7 +73,7 @@ namespace Home.NET.Tiles
         public void AddTestTile()
         {
             TileInfo i = new TileInfo();
-            i.Scale = 1;
+            i.Size = Tile.TileSizes.Normal;
         }
 
         public bool ShowTestGrid
