@@ -93,8 +93,8 @@ namespace Home.NET.Tiles
 
         public Color TileColor
         {
-            get => ((SolidColorBrush)GridCollision.Background).Color;
-            set => GridCollision.Background = new SolidColorBrush(value);
+            get => ((SolidColorBrush)RectCollision.Fill).Color;
+            set => RectCollision.Fill = new SolidColorBrush(value);
         }
 
         public TileAction TileAction = new TileAction();
@@ -141,12 +141,36 @@ namespace Home.NET.Tiles
                     Stuff.BorderMetro b = new Stuff.BorderMetro();
                     BorderGrid.Children.Add(b);
 
+                    RectCollision.RadiusX = 0;
+                    RectCollision.RadiusY = 0;
+
+                    foreach (var rect in Gradients.Children)
+                    {
+                        if (rect is Rectangle)
+                        {
+                            ((Rectangle)rect).RadiusX = 0;
+                            ((Rectangle)rect).RadiusY = 0;
+                        }
+                    }
+
                     Gradients.Visibility = Visibility.Hidden;
                 }
                 else if (value == TileStyles.Aero)
                 {
                     Stuff.BorderAero b = new Stuff.BorderAero();
                     BorderGrid.Children.Add(b);
+
+                    RectCollision.RadiusX = 4;
+                    RectCollision.RadiusY = 4;
+
+                    foreach (var rect in Gradients.Children)
+                    {
+                        if (rect is Rectangle)
+                        {
+                            ((Rectangle)rect).RadiusX = 4;
+                            ((Rectangle)rect).RadiusY = 4;
+                        }
+                    }
 
                     Gradients.Visibility = Visibility.Visible;
                 }
