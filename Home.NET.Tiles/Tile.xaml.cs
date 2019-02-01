@@ -75,12 +75,26 @@ namespace Home.NET.Tiles
                 ApplyTileInfo(info);
         }
 
+        public string TileText
+        {
+            get => TileTextBlock.Text;
+            set => TileTextBlock.Text = value;
+        }
+
         public void ApplyTileInfo(TileInfo info)
         {
             TileStyle = info.Style;
             TileScale = info.Scale;
             TileSize = info.Size;
             TileAction = info.Action;
+            TileText = info.Text;
+            TileColor = info.Image.Color;
+        }
+
+        public Color TileColor
+        {
+            get => ((SolidColorBrush)GridCollision.Background).Color;
+            set => GridCollision.Background = new SolidColorBrush(TileColor);
         }
 
         public TileAction TileAction = new TileAction();
@@ -134,6 +148,16 @@ namespace Home.NET.Tiles
         {
             TileAction.Do();
         }
+
+        private void Grid_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            var size = SizeToEnum(new Size(this.Width, this.Height));
+
+            if (size == TileSizes.Small)
+                GridName.Visibility = Visibility.Hidden;
+            else
+                GridName.Visibility = Visibility.Visible;
+        }
     }
 
     [Serializable]
@@ -144,7 +168,7 @@ namespace Home.NET.Tiles
         public Tile.TileSizes Size = Tile.TileSizes.Normal;
         public string Text = "Tile";
         public TileAction Action = new TileAction();
-
+        public TileImage Image = new TileImage();
 
         public TileInfo() { }
         public TileInfo(Tile tile)
@@ -152,7 +176,22 @@ namespace Home.NET.Tiles
             Scale = tile.TileScale;
             Style = tile.TileStyle;
             Size = tile.TileSize;
+            Action = tile.TileAction;
+            Image.ColorByte = new byte[] { tile.TileColor.A, tile.TileColor.R, tile.TileColor.G, tile.TileColor.B };
         }
+    }
+
+    [Serializable]
+    public class TileImage
+    {
+        public byte[] ColorByte = { 255, 25, 25, 25 }; // dark gray
+
+        public Color Color
+        {
+            get => Color.FromArgb(ColorByte[0], ColorByte[1], ColorByte[2], ColorByte[3]);
+        }
+
+        public TileImage() { }
     }
 
     [Serializable]
@@ -177,5 +216,7 @@ namespace Home.NET.Tiles
             if (Action == Actions.ProcessStart)
                 Process.Start(ProcessStartName, ProcessStartArguments);
         }
+
+        public TileAction() { }
     }
 }
