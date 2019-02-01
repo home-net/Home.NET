@@ -136,10 +136,19 @@ namespace Home.NET.Tiles
 
                 BorderGrid.Children.Clear();
 
-                //if(value == TilesUtils.TileStyle.Aero) fix me
+                if (value == TileStyles.Metro)
                 {
                     Stuff.BorderMetro b = new Stuff.BorderMetro();
                     BorderGrid.Children.Add(b);
+
+                    Gradients.Visibility = Visibility.Hidden;
+                }
+                else if (value == TileStyles.Aero)
+                {
+                    Stuff.BorderAero b = new Stuff.BorderAero();
+                    BorderGrid.Children.Add(b);
+
+                    Gradients.Visibility = Visibility.Visible;
                 }
             }
         }

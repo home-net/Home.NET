@@ -36,5 +36,15 @@ namespace Home.NET
                     this.Background = new SolidColorBrush(Pick.ResultColor);
             }
         }
+
+        private void RadioButton_Click(object sender, RoutedEventArgs e)
+        {
+            TilesPanel.PanelStyle = Tiles.Tile.TileStyles.Aero;
+        }
+
+        private void btnMetro_Click(object sender, RoutedEventArgs e)
+        {
+            TilesPanel.PanelStyle = Tiles.Tile.TileStyles.Metro;
+        }
     }
 }

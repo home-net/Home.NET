@@ -50,6 +50,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Interop\DWMAPI.cs" />
+    <Compile Include="Stuff\BorderAero.xaml.cs">
+      <DependentUpon>BorderAero.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Stuff\BorderMetro.xaml.cs">
       <DependentUpon>BorderMetro.xaml</DependentUpon>
     </Compile>
@@ -60,6 +63,10 @@
       <DependentUpon>TilesPanel.xaml</DependentUpon>
     </Compile>
     <Compile Include="TilesUtils.cs" />
+    <Page Include="Stuff\BorderAero.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Stuff\BorderMetro.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

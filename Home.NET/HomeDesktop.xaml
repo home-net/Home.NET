@@ -15,6 +15,8 @@
         </LinearGradientBrush>
     </Window.Background>
     <Grid x:Name="MainGrid">
-        <Tiles:TilesPanel x:Name="TilesPanel"></Tiles:TilesPanel>
+        <Tiles:TilesPanel x:Name="TilesPanel" Margin="0,0,0,27"/>
+        <RadioButton x:Name="btnMetro" Content="PanelStyle -&gt; Metro" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="White" Margin="8,398,0,0" IsChecked="True" Click="btnMetro_Click"/>
+        <RadioButton Content="PanelStyle -&gt; Aero" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="White" Margin="150,398,0,0" Click="RadioButton_Click"/>
     </Grid>
 </Window>
