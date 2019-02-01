@@ -19,26 +19,6 @@ namespace Home.NET.Tiles
     /// </summary>
     public partial class TilesPanel : UserControl
     {
-        public byte[] ScreenBlock
-        {
-            get
-            {
-                List<byte> result = new List<byte>();
-
-                foreach (var o in TilesList)
-                {
-                    var size = o.TileSize;
-
-                    if(size == Tile.TileSizes.Small)
-                    {
-                        
-                    }
-                }
-
-                return result.ToArray();
-            }
-        }
-
         private Tile.TileStyles panelStyle = Tile.TileStyles.Metro;
         public Tile.TileStyles PanelStyle
         {
@@ -91,7 +71,12 @@ namespace Home.NET.Tiles
                 container.ContainerType = TileContainer.ContainerTypes.SmallToNormal;
                 container.ContainerPanel.Children.Add(tile);
 
-                obj = container;
+                var big = new TileContainer();
+
+                big.ContainerType = TileContainer.ContainerTypes.NormalToWide;
+                big.ContainerPanel.Children.Add(container);
+                
+                obj = big;
             }
             else if (tile.TileSize == Tile.TileSizes.Normal)
             {
@@ -125,7 +110,7 @@ namespace Home.NET.Tiles
             i.Text = text;
             i.Image = new TileImage() { ColorByte = new byte[] { 255, (byte)c.Next(0, 255), (byte)c.Next(0, 255), (byte)c.Next(0, 255) } };
             
-            i.Size = (Tile.TileSizes)c.Next(1, 3);
+            i.Size = (Tile.TileSizes)c.Next(0, 4);
 
             AddTile(new Tile(i));
         }
@@ -198,6 +183,11 @@ namespace Home.NET.Tiles
                     if (o is Tile)
                     {
                         result.Add((Tile)o);
+                    }
+
+                    if (o is TileContainer)
+                    {
+                        result.AddRange((o as TileContainer).Tiles);
                     }
                 }
 

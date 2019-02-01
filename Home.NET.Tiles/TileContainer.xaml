@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="128" d:DesignWidth="256">
     <Grid>
-        <Rectangle Stroke="Red"/>
+        <Rectangle x:Name="DebugRect" Stroke="Red"/>
         <WrapPanel x:Name="ContainerPanel">
             
         </WrapPanel>

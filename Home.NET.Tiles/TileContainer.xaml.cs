@@ -19,6 +19,25 @@ namespace Home.NET.Tiles
     /// </summary>
     public partial class TileContainer : UserControl
     {
+        public List<Tile> Tiles
+        {
+            get
+            {
+                List<Tile> result = new List<Tile>();
+
+                foreach(var o in ContainerPanel.Children)
+                {
+                    if (o is Tile)
+                        result.Add((Tile)o);
+
+                    if (o is TileContainer)
+                        result.AddRange((o as TileContainer).Tiles);
+                }
+
+                return result;
+            }
+        }
+
         public enum ContainerTypes
         {
             SmallToNormal,
@@ -32,10 +51,13 @@ namespace Home.NET.Tiles
             ContainerType = ContainerTypes.NormalToWide;
         }
 
-        public void AddTile(Tile tile)
+        public void AddTile(dynamic tile)
         {
+
             if (ContainerType == ContainerTypes.NormalToWide)
             {
+                ContainerPanel.Orientation = Orientation.Horizontal;
+
                 if (ContainerPanel.Children.Count == 0)
                 {
                     tile.Margin = new Thickness(0, 0, 8, 0);
@@ -44,33 +66,41 @@ namespace Home.NET.Tiles
                 {
                     tile.Margin = new Thickness(0);
                 }
-                else
+                else // more than 2
                 {
                     return;
                 }
 
                 ContainerPanel.Children.Add(tile);
             }
-            //else if (ContainerType == ContainerTypes.SmallToNormal)
-            //{
-            //    if (ContainerPanel.Children.Count == 0)
-            //    {
-            //        tile.Margin = new Thickness(0, 0, 6, 0);
-            //    }
-            //    else if (ContainerPanel.Children.Count == 1)
-            //    {
-            //        tile.Margin = new Thickness(0, 0, 6, 0);
-            //    }
-            //    else
-            //    {
-            //        return;
-            //    }
+            else if (ContainerType == ContainerTypes.SmallToNormal)
+            {
+                ContainerPanel.Orientation = Orientation.Vertical;
 
-            //    ContainerPanel.Children.Add(tile);
-            //}
+                if (ContainerPanel.Children.Count == 0)
+                {
+                    tile.Margin = new Thickness(0, 0, 6, 0);
+                }
+                else if (ContainerPanel.Children.Count == 1)
+                {
+                    tile.Margin = new Thickness(0, 0, 0, 0);
+                }
+                else if (ContainerPanel.Children.Count == 3)
+                {
+                    tile.Margin = new Thickness(0, 6, 6, 0);
+                }
+                else if (ContainerPanel.Children.Count == 4)
+                {
+                    tile.Margin = new Thickness(0, 6, 0, 0);
+                }
+                else // more than 4
+                    return;
+
+                ContainerPanel.Children.Add(tile);
+            }
         }
 
-        public void RemoveTile(Tile tile)
+        public void RemoveTile(UIElement tile)
         {
             ContainerPanel.Children.Remove(tile);
         }
@@ -86,6 +116,8 @@ namespace Home.NET.Tiles
 
                 if (containerType == ContainerTypes.NormalToWide)
                 {
+                    DebugRect.Stroke = new SolidColorBrush(Colors.Red);
+
                     for(int i = 0; i < ContainerPanel.Children.Count; i++)
                     {
                         var o = ContainerPanel.Children[i];
@@ -93,10 +125,10 @@ namespace Home.NET.Tiles
                         if (o is Tile)
                         {
                             (o as Tile).TileSize = Tile.TileSizes.Normal;
-                            
-                            if (i >= 3)
-                                RemoveTile(o as Tile);
                         }
+
+                        if (i >= 3)
+                            RemoveTile(o);
                     }
 
                     Height = 128;
@@ -104,6 +136,8 @@ namespace Home.NET.Tiles
                 }
                 else if (containerType == ContainerTypes.SmallToNormal)
                 {
+                    DebugRect.Stroke = new SolidColorBrush(Colors.Blue);
+
                     for (int i = 0; i < ContainerPanel.Children.Count; i++)
                     {
                         var o = ContainerPanel.Children[i];
@@ -111,10 +145,10 @@ namespace Home.NET.Tiles
                         if (o is Tile)
                         {
                             (o as Tile).TileSize = Tile.TileSizes.Small;
-
-                            if (i >= 5)
-                                RemoveTile(o as Tile);
                         }
+                        
+                        if (i >= 5)
+                            RemoveTile(o as Tile);
                     }
 
                     Height = 128;

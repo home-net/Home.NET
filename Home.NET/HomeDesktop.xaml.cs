@@ -26,7 +26,7 @@ namespace Home.NET
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            Home.NET.Stuff.PickColor Pick = new Stuff.PickColor(Colors.Green, true);
+            Home.NET.Stuff.PickColor Pick = new Stuff.PickColor(Color.FromArgb(255, 0, 142, 143), true);
             if ((bool)Pick.ShowDialog())
             {
                 if (Pick.ResultIsAero)
