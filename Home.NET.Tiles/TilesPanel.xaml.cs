@@ -161,7 +161,7 @@ namespace Home.NET.Tiles
 
                 if (tilePoint == newTile)
                 {
-                    y += padding + (int)size.Height;
+                    y += padding / 2 + (int)size.Height;
                 }
                 else
                     break;
