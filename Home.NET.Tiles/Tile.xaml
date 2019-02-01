@@ -23,12 +23,13 @@
                     </LinearGradientBrush>
                 </Rectangle.Fill>
             </Rectangle>
-            <Rectangle>
+            <Rectangle Margin="0,0,0,78">
                 <Rectangle.Fill>
                     <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-                        <GradientStop Offset="0.3" Color="#0CFFFFFF"/>
-                        <GradientStop Color="#26FFFFFF"/>
-                        <GradientStop Color="#1EFFFFFF" Offset="0.29"/>
+                        <GradientStop Offset="0.65" Color="#0CFFFFFF"/>
+                        <GradientStop Color="#3FFFFFFF"/>
+                        <GradientStop Color="#16FFFFFF" Offset="0.645"/>
+                        <GradientStop Offset="1"/>
                     </LinearGradientBrush>
                 </Rectangle.Fill>
             </Rectangle>

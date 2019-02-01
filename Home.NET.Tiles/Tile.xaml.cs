@@ -160,15 +160,15 @@ namespace Home.NET.Tiles
                     Stuff.BorderAero b = new Stuff.BorderAero();
                     BorderGrid.Children.Add(b);
 
-                    RectCollision.RadiusX = 4;
-                    RectCollision.RadiusY = 4;
+                    RectCollision.RadiusX = 5;
+                    RectCollision.RadiusY = 5;
 
                     foreach (var rect in Gradients.Children)
                     {
                         if (rect is Rectangle)
                         {
-                            ((Rectangle)rect).RadiusX = 4;
-                            ((Rectangle)rect).RadiusY = 4;
+                            ((Rectangle)rect).RadiusX = 5;
+                            ((Rectangle)rect).RadiusY = 5;
                         }
                     }
 
