@@ -11,8 +11,9 @@
             
         </Grid>
         <Grid x:Name="BackMainGrid">
-            <ScrollViewer x:Name="ScrollViewer" Background="#00000000" Foreground="White">
-                <Canvas x:Name="MainGrid"></Canvas>
+            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                <WrapPanel x:Name="MainGrid" Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ScrollViewer}}, Path=ActualWidth}">
+                </WrapPanel>
             </ScrollViewer>
         </Grid>
     </Grid>

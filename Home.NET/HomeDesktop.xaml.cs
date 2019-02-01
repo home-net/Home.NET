@@ -26,7 +26,6 @@ namespace Home.NET
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-
             Home.NET.Stuff.PickColor Pick = new Stuff.PickColor(Colors.Green, true);
             if ((bool)Pick.ShowDialog())
             {
@@ -35,6 +34,8 @@ namespace Home.NET
                 else
                     this.Background = new SolidColorBrush(Pick.ResultColor);
             }
+
+            //this.Background = new SolidColorBrush(Colors.Green);
         }
 
         private void RadioButton_Click(object sender, RoutedEventArgs e)

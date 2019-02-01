@@ -42,7 +42,7 @@ namespace Home.NET.Tiles
             else if (size == TileSizes.Normal)
                 return new Size(128, 128);
             else if (size == TileSizes.Wide)
-                return new Size(128, 256);
+                return new Size(256, 128);
             else if (size == TileSizes.Big)
                 return new Size(256, 256);
 
@@ -55,7 +55,7 @@ namespace Home.NET.Tiles
                 return TileSizes.Small;
             else if (size.Width == 128 && size.Height == 128)
                 return TileSizes.Normal;
-            else if (size.Width == 128 && size.Height == 256)
+            else if (size.Width == 256 && size.Height == 128)
                 return TileSizes.Wide;
             else if (size.Width == 256 && size.Height == 256)
                 return TileSizes.Big;

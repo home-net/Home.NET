@@ -81,12 +81,14 @@ namespace Home.NET.Tiles
             tile.TileStyle = PanelStyle;
             tile.TileScale = PanelScale;
 
-            var pos = GetPositionForNewTile();
+            //var pos = GetPositionForNewTile();
+            tile.Margin = new Thickness(16 * PanelScale);
 
             MainGrid.Children.Add(tile);
 
-            Canvas.SetLeft(tile, pos.X);
-            Canvas.SetTop(tile, pos.Y);
+
+            //Canvas.SetLeft(tile, pos.X);
+            //Canvas.SetTop(tile, pos.Y);
             //tile.HorizontalAlignment = HorizontalAlignment.Left;
             //tile.VerticalAlignment = VerticalAlignment.Top;
 
@@ -98,14 +100,15 @@ namespace Home.NET.Tiles
             MainGrid.Children.Remove(tile);
         }
 
+        Random c = new Random();
+
         public void AddTestTile(string text)
         {
-            Random c = new Random();
 
             TileInfo i = new TileInfo();
             i.Text = text;
             i.Image = new TileImage() { ColorByte = new byte[] { 255, (byte)c.Next(0, 255), (byte)c.Next(0, 255), (byte)c.Next(0, 255) } };
-            i.Size = Tile.TileSizes.Normal;
+            i.Size = (Tile.TileSizes)c.Next(0, 3);
 
             AddTile(new Tile(i));
         }
@@ -147,7 +150,24 @@ namespace Home.NET.Tiles
 
         public TileOnPanelInfo GetPositionForNewTile()
         {
-            return new TileOnPanelInfo() { X = 30, Y = 30 };
+            Size size = Tile.EnumToSize(Tile.TileSizes.Normal); // 128x128
+            int padding = 16;
+            int x = 30, y = 30;
+
+            foreach(var tile in TilesList)
+            {
+                Point tilePoint = new Point((int)Canvas.GetLeft(tile), (int)Canvas.GetTop(tile));
+                Point newTile = new Point(x, y);
+
+                if (tilePoint == newTile)
+                {
+                    y += padding + (int)size.Height;
+                }
+                else
+                    break;
+            }
+
+            return new TileOnPanelInfo() { X = x, Y = y };
         }
 
         public List<Tile> TilesList
@@ -178,7 +198,7 @@ namespace Home.NET.Tiles
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            for (int i = 0; i < 15; i++)
+            for (int i = 0; i < 50; i++)
                 AddTestTile("Test Tile " + i);
         }
     }
