@@ -22,6 +22,8 @@ namespace Home.NET.Tiles
         public TilesPanel()
         {
             InitializeComponent();
+
+            ShowTestGrid = true;
         }
 
         public void AddTile(Tile tile)
@@ -34,9 +36,44 @@ namespace Home.NET.Tiles
 
         }
 
+        public bool ShowTestGrid
+        {
+            get
+            {
+                if (GridX.Visibility != Visibility.Hidden)
+                    return true;
+                else
+                    return false;
+            }
+            set
+            {
+                if(!value)
+                {
+                    GridX.Children.Clear();
+                    GridX.Visibility = Visibility.Hidden;
+                }
+                else
+                {
+                    GridX.Visibility = Visibility.Visible;
+                    GridX.Children.Clear();
+
+                    for (int y = 0; y < 100; y++)
+                    {
+                        for (int x = 0; x < 100; x++)
+                        {
+                            Border b = new Border();
+                            b.Background = new SolidColorBrush(Color.FromArgb(70, 25, 25, 25));
+
+                            GridX.Children.Add(b);
+                        }
+                    }
+                }
+            }
+        }
+
         public TileOnPanelInfo GetPositionForNewTile()
         {
-
+            return new TileOnPanelInfo() { X = 64, Y = 64 };
         }
 
         public List<Tile> TilesList

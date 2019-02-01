@@ -6,6 +6,10 @@
              xmlns:local="clr-namespace:Home.NET.Tiles"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid x:Name="MainGrid">
+    <Grid x:Name="BackGrid">
+        <Grid x:Name="GridX" IsHitTestVisible="False" Visibility="Hidden">
+            
+        </Grid>
+        <Grid x:Name="MainGrid"></Grid>
     </Grid>
 </UserControl>
