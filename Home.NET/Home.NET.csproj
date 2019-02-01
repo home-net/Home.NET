@@ -59,7 +59,6 @@
     <Compile Include="Stuff\PickColor.xaml.cs">
       <DependentUpon>PickColor.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Xml\TileInfo.cs" />
     <Page Include="HomeDesktop.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
