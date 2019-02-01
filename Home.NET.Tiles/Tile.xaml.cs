@@ -94,7 +94,7 @@ namespace Home.NET.Tiles
         public Color TileColor
         {
             get => ((SolidColorBrush)GridCollision.Background).Color;
-            set => GridCollision.Background = new SolidColorBrush(TileColor);
+            set => GridCollision.Background = new SolidColorBrush(value);
         }
 
         public TileAction TileAction = new TileAction();

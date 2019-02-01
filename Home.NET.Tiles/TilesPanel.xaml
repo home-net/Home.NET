@@ -11,7 +11,7 @@
             
         </Grid>
         <Grid x:Name="BackMainGrid">
-            <ScrollViewer x:Name="ScrollViewer">
+            <ScrollViewer x:Name="ScrollViewer" Background="#00000000" Foreground="White">
                 <Canvas x:Name="MainGrid"></Canvas>
             </ScrollViewer>
         </Grid>

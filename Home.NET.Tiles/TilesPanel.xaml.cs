@@ -100,9 +100,11 @@ namespace Home.NET.Tiles
 
         public void AddTestTile(string text)
         {
+            Random c = new Random();
+
             TileInfo i = new TileInfo();
             i.Text = text;
-            i.Image = new TileImage() { ColorByte = new byte[] { 255, (byte)new Random().Next(0, 255), (byte)new Random().Next(0, 255), (byte)new Random().Next(0, 255) } };
+            i.Image = new TileImage() { ColorByte = new byte[] { 255, (byte)c.Next(0, 255), (byte)c.Next(0, 255), (byte)c.Next(0, 255) } };
             i.Size = Tile.TileSizes.Normal;
 
             AddTile(new Tile(i));
@@ -145,7 +147,7 @@ namespace Home.NET.Tiles
 
         public TileOnPanelInfo GetPositionForNewTile()
         {
-            return new TileOnPanelInfo() { X = 5, Y = 5 };
+            return new TileOnPanelInfo() { X = 30, Y = 30 };
         }
 
         public List<Tile> TilesList
