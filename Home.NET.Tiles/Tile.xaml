@@ -12,6 +12,22 @@
         <Grid x:Name="BorderGrid" IsHitTestVisible="False">
             <stuff:BorderMetro></stuff:BorderMetro>
         </Grid>
+        <Grid x:Name="Gradients" IsHitTestVisible="False">
+            <Grid.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#7F000000" Offset="1"/>
+                    <GradientStop Color="#00000000" Offset="0.7"/>
+                </LinearGradientBrush>
+            </Grid.Background>
+            <Grid>
+                <Grid.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                        <GradientStop Offset="0.795"/>
+                        <GradientStop Color="#26FFFFFF"/>
+                    </LinearGradientBrush>
+                </Grid.Background>
+            </Grid>
+        </Grid>
         <Grid x:Name="GridName" IsHitTestVisible="False" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="10,0,0,0" Height="25" >
             <TextBlock x:Name="TileTextBlock" FontFamily="Segoe UI" Text="Tile Text" Foreground="White" Margin="0">
 
