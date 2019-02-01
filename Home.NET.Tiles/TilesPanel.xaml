@@ -10,6 +10,10 @@
         <Grid x:Name="GridX" IsHitTestVisible="False" Visibility="Hidden">
             
         </Grid>
-        <Grid x:Name="MainGrid"></Grid>
+        <Grid x:Name="BackMainGrid">
+            <ScrollViewer x:Name="ScrollViewer">
+                <Canvas x:Name="MainGrid"></Canvas>
+            </ScrollViewer>
+        </Grid>
     </Grid>
 </UserControl>

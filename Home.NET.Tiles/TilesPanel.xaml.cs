@@ -19,6 +19,26 @@ namespace Home.NET.Tiles
     /// </summary>
     public partial class TilesPanel : UserControl
     {
+        public byte[] ScreenBlock
+        {
+            get
+            {
+                List<byte> result = new List<byte>();
+
+                foreach (var o in TilesList)
+                {
+                    var size = o.TileSize;
+
+                    if(size == Tile.TileSizes.Small)
+                    {
+                        
+                    }
+                }
+
+                return result.ToArray();
+            }
+        }
+
         private Tile.TileStyles panelStyle = Tile.TileStyles.Metro;
         public Tile.TileStyles PanelStyle
         {
@@ -65,7 +85,12 @@ namespace Home.NET.Tiles
 
             MainGrid.Children.Add(tile);
 
-            tile.Margin = new Thickness(pos.X, pos.Y, 0, 0);
+            Canvas.SetLeft(tile, pos.X);
+            Canvas.SetTop(tile, pos.Y);
+            //tile.HorizontalAlignment = HorizontalAlignment.Left;
+            //tile.VerticalAlignment = VerticalAlignment.Top;
+
+            //tile.Margin = new Thickness(pos.X, pos.Y, 0, 0);
         }
 
         public void DeleteTile(Tile tile)
@@ -120,7 +145,7 @@ namespace Home.NET.Tiles
 
         public TileOnPanelInfo GetPositionForNewTile()
         {
-            return new TileOnPanelInfo() { X = 64, Y = 64 };
+            return new TileOnPanelInfo() { X = 5, Y = 5 };
         }
 
         public List<Tile> TilesList
