@@ -13,7 +13,7 @@
             <stuff:BorderMetro></stuff:BorderMetro>
         </Grid>
         <Grid x:Name="GridName" IsHitTestVisible="False" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="10,0,0,0" Height="25" >
-            <TextBlock x:Name="TileTextBlock" FontFamily="Segoe UI Light" Text="Tile Text" Foreground="White" Margin="0">
+            <TextBlock x:Name="TileTextBlock" FontFamily="Segoe UI" Text="Tile Text" Foreground="White" Margin="0">
 
             </TextBlock>
         </Grid>
