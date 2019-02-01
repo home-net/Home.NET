@@ -79,6 +79,8 @@ namespace Home.NET.Tiles
             i.Text = text;
             i.Image = new TileImage() { ColorByte = new byte[] { 255, (byte)new Random().Next(0, 255), (byte)new Random().Next(0, 255), (byte)new Random().Next(0, 255) } };
             i.Size = Tile.TileSizes.Normal;
+
+            AddTile(new Tile(i));
         }
 
         public bool ShowTestGrid
