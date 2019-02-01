@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{DA77991F-D50A-4B07-B682-DE58B995DB25}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
-    <RootNamespace>Home.NET</RootNamespace>
-    <AssemblyName>Home.NET</AssemblyName>
+    <ProjectGuid>{887D4CE0-D4C5-4E70-AEAE-5BF3715D4F04}</ProjectGuid>
+    <OutputType>library</OutputType>
+    <RootNamespace>Home.NET.Tiles</RootNamespace>
+    <AssemblyName>Home.NET.Tiles</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -15,7 +15,6 @@
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -25,7 +24,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -51,28 +49,26 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <ApplicationDefinition Include="App.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </ApplicationDefinition>
-    <Compile Include="Xml\Settings.cs" />
-    <Compile Include="Stuff\PickColor.xaml.cs">
-      <DependentUpon>PickColor.xaml</DependentUpon>
+    <Compile Include="Interop\DWMAPI.cs" />
+    <Compile Include="Stuff\BorderMetro.xaml.cs">
+      <DependentUpon>BorderMetro.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Xml\TileInfo.cs" />
-    <Page Include="HomeDesktop.xaml">
-      <Generator>MSBuild:Compile</Generator>
+    <Compile Include="Tile.xaml.cs">
+      <DependentUpon>Tile.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TilesPanel.xaml.cs">
+      <DependentUpon>TilesPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TilesUtils.cs" />
+    <Page Include="Stuff\BorderMetro.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Compile Include="App.xaml.cs">
-      <DependentUpon>App.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="HomeDesktop.xaml.cs">
-      <DependentUpon>HomeDesktop.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Page Include="Stuff\PickColor.xaml">
+    <Page Include="Tile.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TilesPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -99,12 +95,6 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Home.NET.Tiles\Home.NET.Tiles.csproj">
-      <Project>{887d4ce0-d4c5-4e70-aeae-5bf3715d4f04}</Project>
-      <Name>Home.NET.Tiles</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

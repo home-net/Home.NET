@@ -12,14 +12,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Home.NET
+namespace Home.NET.Tiles.Stuff
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for BorderMetro.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class BorderMetro : UserControl
     {
-        public MainWindow()
+        public BorderMetro()
         {
             InitializeComponent();
         }
