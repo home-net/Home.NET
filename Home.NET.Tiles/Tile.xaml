@@ -10,7 +10,7 @@
              d:DesignHeight="128" d:DesignWidth="128">
     <Grid SizeChanged="Grid_SizeChanged">
         <Grid x:Name="GridCollisionX">
-            <Rectangle x:Name="RectCollision" Fill="#FF191919" MouseLeftButtonUp="GridCollision_MouseLeftButtonUp"></Rectangle>
+            <Rectangle x:Name="RectCollision" Fill="#FF191919"></Rectangle>
         </Grid>
         <Grid x:Name="BorderGrid" Visibility="Visible" IsHitTestVisible="False">
             <stuff:BorderMetro></stuff:BorderMetro>
@@ -35,10 +35,26 @@
                 </Rectangle.Fill>
             </Rectangle>-->
         </Grid>
+        <Grid x:Name="Media" IsHitTestVisible="False">
+            <Image x:Name="BackgroundMedia" IsHitTestVisible="False" Visibility="Hidden"></Image>
+            <Image x:Name="IconMedia" IsHitTestVisible="False" Visibility="Hidden"></Image>
+            <Canvas x:Name="GlowCanvas" IsHitTestVisible="False">
+                <Grid x:Name="MouseGlow" IsHitTestVisible="False" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Height="75">
+                    <Grid.Background>
+                        <RadialGradientBrush>
+                            <GradientStop Offset="1"/>
+                            <GradientStop Color="#26FFFFFF"/>
+                        </RadialGradientBrush>
+                    </Grid.Background>
+                </Grid>
+            </Canvas>
+        </Grid>
         <Grid x:Name="GridName" IsHitTestVisible="False" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="10,0,0,0" Height="25" >
             <TextBlock x:Name="TileTextBlock" FontFamily="Segoe UI" Text="Tile Text" Foreground="White" Margin="0">
 
             </TextBlock>
         </Grid>
+
+        <Grid x:Name="GridMouseCollision" Visibility="Hidden" Background="#00000000" MouseLeftButtonUp="GridCollision_MouseLeftButtonUp" MouseMove="GridMouseCollision_MouseMove" MouseDown="GridMouseCollision_MouseDown" MouseEnter="GridMouseCollision_MouseEnter" MouseLeftButtonDown="GridMouseCollision_MouseLeftButtonDown" MouseLeave="GridMouseCollision_MouseLeave"></Grid>
     </Grid>
 </UserControl>

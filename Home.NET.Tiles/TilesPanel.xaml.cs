@@ -141,7 +141,7 @@ namespace Home.NET.Tiles
 
             TileInfo i = new TileInfo();
             i.Text = text;
-            i.Image = new TileImage() { ColorByte = new byte[] { 255, (byte)c.Next(0, 255), (byte)c.Next(0, 255), (byte)c.Next(0, 255) } };
+            i.ColorByte = new byte[] { 255, (byte)c.Next(0, 255), (byte)c.Next(0, 255), (byte)c.Next(0, 255) };
             
             i.Size = (Tile.TileSizes)c.Next(0, 4);
 

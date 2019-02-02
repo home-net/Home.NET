@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -8,6 +9,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
@@ -21,6 +23,8 @@ namespace Home.NET.Tiles
     /// </summary>
     public partial class Tile : UserControl
     {
+        public System.Timers.Timer UpdateTimer = new System.Timers.Timer(500);
+
         public const int TilePadding = 8;
         public const int TileMaxSize = 248;
 
@@ -74,6 +78,9 @@ namespace Home.NET.Tiles
         {
             InitializeComponent();
 
+            GridMouseCollision.Visibility = Visibility.Visible;
+            MouseGlow.Opacity = 0;
+
             TileSize = TileSizes.Normal;
 
             if (info != null)
@@ -93,15 +100,23 @@ namespace Home.NET.Tiles
             TileSize = info.Size;
             TileAction = info.Action;
             TileText = info.Text;
-            TileColor = info.Image.Color;
+            TileColor = info.Color;
+
+            MediaTypeBackground = info.Image;
+            MediaTypeIcon = info.Icon;
+
+            UpdateActions();
         }
+
+        private TileInfo.MediaTypes mediaTypeBackground = TileInfo.MediaTypes.None;
+        private TileInfo.MediaTypes mediaTypeIcon = TileInfo.MediaTypes.None;
 
         public Color TileColor
         {
             get => ((SolidColorBrush)RectCollision.Fill).Color;
             set => RectCollision.Fill = new SolidColorBrush(value);
         }
-
+        
         public TileAction TileAction = new TileAction();
 
         public double TileScale
@@ -113,6 +128,20 @@ namespace Home.NET.Tiles
                 if (value <= 0)
                     value = 1;
                 tileScale = value;
+            }
+        }
+
+        public void UpdateActions()
+        {
+            TileAction.Parent = this;
+
+            if (TileAction.Action == TileAction.Actions.ProcessStart)
+            {
+                MediaTypeIcon = TileInfo.MediaTypes.ProcessFile;
+            }
+            else if (TileAction.Action == TileAction.Actions.None)
+            {
+                MediaTypeIcon = TileInfo.MediaTypes.Bytes;
             }
         }
 
@@ -182,6 +211,98 @@ namespace Home.NET.Tiles
             }
         }
 
+        private ImageSource customMediaIcon = null;
+        private ImageSource customMediaBackground = null;
+
+        public TileInfo.MediaTypes MediaTypeBackground
+        {
+            get => mediaTypeBackground;
+            set
+            {
+                mediaTypeBackground = value;
+                TileUpdateImage(IconMedia, value, CustomMediaBackground);
+            }
+        }
+        public TileInfo.MediaTypes MediaTypeIcon
+        {
+            get => mediaTypeIcon;
+            set
+            {
+                mediaTypeIcon = value;
+                TileUpdateImage(IconMedia, value, CustomMediaIcon);
+            }
+        }
+
+        public ImageSource CustomMediaBackground
+        {
+            get => customMediaBackground;
+            set
+            {
+                customMediaBackground = value;
+                MediaTypeBackground = MediaTypeBackground;  // update
+            }
+        }
+        public ImageSource CustomMediaIcon
+        {
+            get => customMediaIcon;
+            set
+            {
+                customMediaIcon = value;
+                MediaTypeIcon = MediaTypeIcon; // update
+            }
+        }
+
+        public void TileUpdateImage(Image img, TileInfo.MediaTypes type, ImageSource custom)
+        {
+            if (type == TileInfo.MediaTypes.None)
+            {
+                if (img.Opacity >= 1)
+                {
+                    img.FadeOut(300);
+                }
+            }
+            else if (type == TileInfo.MediaTypes.ProcessFile)
+            {
+                var icon = System.Drawing.SystemIcons.Error;
+                FileInfo p = new FileInfo(TileAction.ProcessStartName);
+
+                if(p.Exists)
+                {
+                    icon.Dispose();
+                    icon = System.Drawing.Icon.ExtractAssociatedIcon(p.FullName);
+                }
+
+                img.Source = IconToImage(icon);
+
+                icon.Dispose();
+
+                if (img.Opacity < 1)
+                {
+                    img.FadeIn(300);
+                }
+            }
+            else if (type == TileInfo.MediaTypes.Bytes)
+            {
+                if (custom != null)
+                {
+                    if (img.Opacity < 1)
+                        img.FadeIn(300);
+
+                    img.Source = custom;
+                }
+                else
+                {
+                    if (img.Opacity < 1)
+                        img.FadeOut(300);
+                }
+            }
+        }
+
+        public static ImageSource IconToImage(System.Drawing.Icon icon)
+        {
+            return Imaging.CreateBitmapSourceFromHIcon(icon.Handle, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions()); 
+        }
+
         private void GridCollision_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             TileAction.Do();
@@ -199,6 +320,59 @@ namespace Home.NET.Tiles
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
+            UpdateTimer.Elapsed += UpdateTimer_Elapsed;
+            UpdateTimer.Start();
+        }
+
+        private void UpdateTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            this.Dispatcher.Invoke(new Action(() => UpdateActions()));
+            
+        }
+
+        private void GridMouseCollision_MouseMove(object sender, MouseEventArgs e)
+        {
+            var pos = e.GetPosition(GlowCanvas);
+            var glowsize = MouseGlow.Width;
+
+            Canvas.SetLeft(MouseGlow, pos.X - glowsize / 2);
+            Canvas.SetTop(MouseGlow, pos.Y - glowsize / 2);
+
+            //if (pos.X < glowsize || pos.X > glowsize + this.Width ||
+            //   pos.Y < glowsize || pos.Y > glowsize + this.Height)
+            //{
+            //    if (MouseGlow.Opacity >= 1)
+            //    {
+            //        MouseGlow.FadeOut(200);
+            //    }
+            //}
+            //else
+            //{
+            //    if (MouseGlow.Opacity < 1)
+            //    {
+            //        MouseGlow.FadeIn(200);
+            //    }
+            //}
+        }
+
+        private void GridMouseCollision_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void GridMouseCollision_MouseEnter(object sender, MouseEventArgs e)
+        {
+            MouseGlow.FadeIn(200);
+        }
+
+        private void GridMouseCollision_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            TileAction.Do();
+        }
+
+        private void GridMouseCollision_MouseLeave(object sender, MouseEventArgs e)
+        {
+                MouseGlow.FadeOut(200);
         }
     }
 
@@ -210,22 +384,18 @@ namespace Home.NET.Tiles
         public Tile.TileSizes Size = Tile.TileSizes.Normal;
         public string Text = "Tile";
         public TileAction Action = new TileAction();
-        public TileImage Image = new TileImage();
 
-        public TileInfo() { }
-        public TileInfo(Tile tile)
+        public enum MediaTypes
         {
-            Scale = tile.TileScale;
-            Style = tile.TileStyle;
-            Size = tile.TileSize;
-            Action = tile.TileAction;
-            Image.ColorByte = new byte[] { tile.TileColor.A, tile.TileColor.R, tile.TileColor.G, tile.TileColor.B };
+            None,
+            File,
+            ProcessFile,
+            Bytes
         }
-    }
 
-    [Serializable]
-    public class TileImage
-    {
+        public MediaTypes Icon = MediaTypes.None;
+        public MediaTypes Image = MediaTypes.None;
+
         public byte[] ColorByte = { 255, 25, 25, 25 }; // dark gray
 
         public Color Color
@@ -234,7 +404,18 @@ namespace Home.NET.Tiles
             set => ColorByte = new byte[] { value.A, value.R, value.G, value.B };
         }
 
-        public TileImage() { }
+
+        public TileInfo() { }
+        public TileInfo(Tile tile)
+        {
+            Scale = tile.TileScale;
+            Style = tile.TileStyle;
+            Size = tile.TileSize;
+            Action = tile.TileAction;
+            Color = tile.TileColor;
+            Icon = tile.MediaTypeIcon;
+            Image = tile.MediaTypeBackground;
+        }
     }
 
     [Serializable]
@@ -254,6 +435,9 @@ namespace Home.NET.Tiles
 
         public string NETInvoke = "";
 
+        [NonSerialized]
+        public Tile Parent = null;
+
         public void Do()
         {
             if (Action == Actions.ProcessStart)
@@ -261,5 +445,10 @@ namespace Home.NET.Tiles
         }
 
         public TileAction() { }
+
+        public TileAction(Tile p)
+        {
+            Parent = p;
+        }
     }
 }

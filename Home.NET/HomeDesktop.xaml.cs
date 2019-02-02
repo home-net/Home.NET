@@ -29,7 +29,7 @@ namespace Home.NET
 
             TileInfo i = new TileInfo();
             i.Action = new TileAction() { Action = TileAction.Actions.ProcessStart, ProcessStartName = "explorer" };
-            i.Image.ColorByte = new byte[] { 255, 4, 17, 75 };
+            i.ColorByte = new byte[] { 255, 4, 17, 75 };
             i.Text = "My Computer";
             i.Size = Tile.TileSizes.Normal;
 
@@ -37,7 +37,7 @@ namespace Home.NET
 
             i = new TileInfo();
             i.Action = new TileAction() { Action = TileAction.Actions.ProcessStart, ProcessStartName = "explorer" };
-            i.Image.ColorByte = new byte[] { 255, 75, 156, 206 };
+            i.ColorByte = new byte[] { 255, 75, 156, 206 };
             i.Text = "Settings";
             i.Size = Tile.TileSizes.Normal;
 
