@@ -58,6 +58,7 @@ namespace Home.NET.Tiles
 
         public void AddTile(TileContainer tiles)
         {
+            tiles.ParentPanel = this;
 
             if (tiles.ContainerType == TileContainer.ContainerTypes.SmallToNormal)
             {
@@ -65,6 +66,7 @@ namespace Home.NET.Tiles
 
                 big.ContainerType = TileContainer.ContainerTypes.NormalToWide;
                 big.ContainerPanel.Children.Add(tiles);
+                big.ParentPanel = this;
 
                 big.Margin = new Thickness(Tile.TilePadding / 2);
 
@@ -90,12 +92,14 @@ namespace Home.NET.Tiles
 
                 container.ContainerType = TileContainer.ContainerTypes.SmallToNormal;
                 container.ContainerPanel.Children.Add(tile);
+                container.ParentPanel = this;
 
                 var big = new TileContainer();
 
                 big.ContainerType = TileContainer.ContainerTypes.NormalToWide;
                 big.ContainerPanel.Children.Add(container);
-                
+                big.ParentPanel = this;
+
                 obj = big;
             }
             else if (tile.TileSize == Tile.TileSizes.Normal)
@@ -104,6 +108,7 @@ namespace Home.NET.Tiles
 
                 container.ContainerType = TileContainer.ContainerTypes.NormalToWide;
                 container.ContainerPanel.Children.Add(tile);
+                container.ParentPanel = this;
 
                 obj = container;
             }

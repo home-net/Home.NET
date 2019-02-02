@@ -19,6 +19,8 @@ namespace Home.NET.Tiles
     /// </summary>
     public partial class TileContainer : UserControl
     {
+        public TilesPanel ParentPanel = null;
+
         public List<Tile> Tiles
         {
             get
@@ -68,6 +70,10 @@ namespace Home.NET.Tiles
                 }
                 else // more than 2
                 {
+                    // Add new tile to panel
+                    if (ParentPanel != null && tile is Tile)
+                        ParentPanel.AddTile(tile);
+
                     return;
                 }
 
@@ -75,26 +81,32 @@ namespace Home.NET.Tiles
             }
             else if (ContainerType == ContainerTypes.SmallToNormal)
             {
-                ContainerPanel.Orientation = Orientation.Vertical;
+                ContainerPanel.Orientation = Orientation.Horizontal;
 
                 if (ContainerPanel.Children.Count == 0)
                 {
-                    tile.Margin = new Thickness(0, 0, Tile.TilePadding, 0);
+                    //tile.Margin = new Thickness(0, 0, Tile.TilePadding, 0);
                 }
                 else if (ContainerPanel.Children.Count == 1)
                 {
-                    tile.Margin = new Thickness(0, 0, 0, 0);
+                    //tile.Margin = new Thickness(0, 0, 0, 0);
+                }
+                else if (ContainerPanel.Children.Count == 2)
+                {
+                    //tile.Margin = new Thickness(0, Tile.TilePadding, Tile.TilePadding, 0);
                 }
                 else if (ContainerPanel.Children.Count == 3)
                 {
-                    tile.Margin = new Thickness(0, Tile.TilePadding, Tile.TilePadding, 0);
-                }
-                else if (ContainerPanel.Children.Count == 4)
-                {
-                    tile.Margin = new Thickness(0, Tile.TilePadding, 0, 0);
+                    //tile.Margin = new Thickness(0, Tile.TilePadding, 0, 0);
                 }
                 else // more than 4
+                {
+                    // Add new tile to panel
+                    if (ParentPanel != null && tile is Tile)
+                        ParentPanel.AddTile(tile);
+
                     return;
+                }
 
                 ContainerPanel.Children.Add(tile);
             }
