@@ -20,6 +20,9 @@ namespace Home.NET.Tiles
     /// </summary>
     public partial class Tile : UserControl
     {
+        public const int TilePadding = 8;
+        public const int TileMaxSize = 248;
+
         public enum TileSizes
         {
             Small,
@@ -35,29 +38,30 @@ namespace Home.NET.Tiles
             // Fluent
         }
 
+        // 1366x768 - original screen size
         public static Size EnumToSize(TileSizes size)
         {
             if (size == TileSizes.Small)
                 return new Size(56, 56);
             else if (size == TileSizes.Normal)
-                return new Size(120, 128);
+                return new Size(120, 120);
             else if (size == TileSizes.Wide)
-                return new Size(256, 128);
+                return new Size(248, 120);
             else if (size == TileSizes.Big)
-                return new Size(256, 272);
+                return new Size(248, 248);
 
-            return new Size(120, 128);
+            return EnumToSize(TileSizes.Normal);
         }
 
         public static TileSizes SizeToEnum(Size size)
         {
             if (size.Width == 56 && size.Height == 56)
                 return TileSizes.Small;
-            else if (size.Width == 120 && size.Height == 128)
+            else if (size.Width == 120 && size.Height == 120)
                 return TileSizes.Normal;
-            else if (size.Width == 256 && size.Height == 128)
+            else if (size.Width == 248 && size.Height == 120)
                 return TileSizes.Wide;
-            else if (size.Width == 256 && size.Height == 272)
+            else if (size.Width == 248 && size.Height == 248)
                 return TileSizes.Big;
 
             return TileSizes.Small;
@@ -222,6 +226,7 @@ namespace Home.NET.Tiles
         public Color Color
         {
             get => Color.FromArgb(ColorByte[0], ColorByte[1], ColorByte[2], ColorByte[3]);
+            set => ColorByte = new byte[] { value.A, value.R, value.G, value.B };
         }
 
         public TileImage() { }

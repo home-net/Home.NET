@@ -56,9 +56,29 @@ namespace Home.NET.Tiles
             ShowTestGrid = false;
         }
 
-        public void AddTile(Tile tile)
+        public void AddTile(TileContainer tiles)
         {
 
+            if (tiles.ContainerType == TileContainer.ContainerTypes.SmallToNormal)
+            {
+                var big = new TileContainer();
+
+                big.ContainerType = TileContainer.ContainerTypes.NormalToWide;
+                big.ContainerPanel.Children.Add(tiles);
+
+                big.Margin = new Thickness(Tile.TilePadding / 2);
+
+                MainGrid.Children.Add(big);
+            }
+            else
+            {
+                tiles.Margin = new Thickness(Tile.TilePadding / 2);
+                MainGrid.Children.Add(tiles);
+            }
+        }
+
+        public void AddTile(Tile tile)
+        {
             tile.TileStyle = PanelStyle;
             tile.TileScale = PanelScale;
 
@@ -89,9 +109,9 @@ namespace Home.NET.Tiles
             }
 
             if (obj is Tile)
-                (obj as Tile).Margin = new Thickness((16 / 2) * PanelScale);
+                (obj as Tile).Margin = new Thickness(Tile.TilePadding / 2);
             else if (obj is TileContainer)
-                (obj as TileContainer).Margin = new Thickness((16 / 2) * PanelScale);
+                (obj as TileContainer).Margin = new Thickness(Tile.TilePadding / 2);
 
             MainGrid.Children.Add(obj);
         }
@@ -205,8 +225,6 @@ namespace Home.NET.Tiles
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            for (int i = 0; i < 50; i++)
-                AddTestTile("Test Tile " + i);
         }
     }
 

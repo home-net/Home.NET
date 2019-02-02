@@ -44,11 +44,11 @@ namespace Home.NET.Tiles
             NormalToWide
         }
 
-        public TileContainer()
+        public TileContainer(ContainerTypes type = ContainerTypes.NormalToWide)
         {
             InitializeComponent();
 
-            ContainerType = ContainerTypes.NormalToWide;
+            ContainerType = type;
         }
 
         public void AddTile(dynamic tile)
@@ -60,7 +60,7 @@ namespace Home.NET.Tiles
 
                 if (ContainerPanel.Children.Count == 0)
                 {
-                    tile.Margin = new Thickness(0, 0, 8, 0);
+                    tile.Margin = new Thickness(0, 0, Tile.TilePadding, 0);
                 }
                 else if (ContainerPanel.Children.Count == 1)
                 {
@@ -79,7 +79,7 @@ namespace Home.NET.Tiles
 
                 if (ContainerPanel.Children.Count == 0)
                 {
-                    tile.Margin = new Thickness(0, 0, 6, 0);
+                    tile.Margin = new Thickness(0, 0, Tile.TilePadding, 0);
                 }
                 else if (ContainerPanel.Children.Count == 1)
                 {
@@ -87,11 +87,11 @@ namespace Home.NET.Tiles
                 }
                 else if (ContainerPanel.Children.Count == 3)
                 {
-                    tile.Margin = new Thickness(0, 6, 6, 0);
+                    tile.Margin = new Thickness(0, Tile.TilePadding, Tile.TilePadding, 0);
                 }
                 else if (ContainerPanel.Children.Count == 4)
                 {
-                    tile.Margin = new Thickness(0, 6, 0, 0);
+                    tile.Margin = new Thickness(0, Tile.TilePadding, 0, 0);
                 }
                 else // more than 4
                     return;
@@ -131,8 +131,9 @@ namespace Home.NET.Tiles
                             RemoveTile(o);
                     }
 
-                    Height = 128;
-                    Width = 256;
+                    var normalSize = Tile.EnumToSize(Tile.TileSizes.Wide);
+                    Height = normalSize.Height;
+                    Width = normalSize.Width;
                 }
                 else if (containerType == ContainerTypes.SmallToNormal)
                 {
@@ -151,8 +152,9 @@ namespace Home.NET.Tiles
                             RemoveTile(o as Tile);
                     }
 
-                    Height = 128;
-                    Width = 128;
+                    var normalSize = Tile.EnumToSize(Tile.TileSizes.Normal);
+                    Height = normalSize.Height;
+                    Width = normalSize.Width;
                 }
             }
         }

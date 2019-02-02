@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Loaded="Window_Loaded"
         xmlns:Tiles="clr-namespace:Home.NET.Tiles;assembly=Home.NET.Tiles"
-        Title="HomeDesktop" Height="450" Width="800">
+        Title="HomeDesktop" Height="556" Width="904">
     <Window.Background>
         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
             <GradientStop Color="#FF171717" Offset="1"/>
@@ -15,8 +15,18 @@
         </LinearGradientBrush>
     </Window.Background>
     <Grid x:Name="MainGrid">
-        <Tiles:TilesPanel x:Name="TilesPanel" Margin="0,0,0,27"/>
+        <Tiles:TilesPanel x:Name="TilesPanel" Margin="0,53,0,26" RenderTransformOrigin="0.5,0.5">
+            <Tiles:TilesPanel.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleX="-0.108"/>
+                    <RotateTransform/>
+                    <TranslateTransform X="-0.498"/>
+                </TransformGroup>
+            </Tiles:TilesPanel.RenderTransform>
+        </Tiles:TilesPanel>
         <RadioButton x:Name="btnMetro" Content="PanelStyle -&gt; Metro" HorizontalAlignment="Left" VerticalAlignment="Bottom" Foreground="White" Margin="10,0,0,3" IsChecked="True" Click="btnMetro_Click"/>
         <RadioButton Content="PanelStyle -&gt; Aero" HorizontalAlignment="Left" VerticalAlignment="Bottom" Foreground="White" Margin="146,0,0,3" Click="RadioButton_Click"/>
+        <Button Content="add test tile" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="130" Margin="286,401,0,-3" Click="Button_Click"/>
     </Grid>
 </Window>
