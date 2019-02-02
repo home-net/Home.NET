@@ -50,7 +50,7 @@ namespace Home.NET
             a.TileColor = Colors.Red;
             b.TileColor = Colors.Green;
             c.TileColor = Colors.Blue;
-            d.TileColor = Colors.White;
+            d.TileColor = Colors.Yellow;
 
             TileContainer cont = new TileContainer(TileContainer.ContainerTypes.SmallToNormal);
             cont.AddTile(a);
