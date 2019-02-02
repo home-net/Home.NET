@@ -8,7 +8,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="128" d:DesignWidth="256">
     <Grid>
-        <Rectangle x:Name="DebugRect" Stroke="Red"/>
+        <Rectangle x:Name="DebugRect" Visibility="Hidden" Stroke="Red"/>
         <ScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Disabled">
             <WrapPanel x:Name="ContainerPanel">
             
