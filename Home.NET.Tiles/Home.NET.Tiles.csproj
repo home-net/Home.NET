@@ -67,6 +67,10 @@
       <DependentUpon>TilesPanel.xaml</DependentUpon>
     </Compile>
     <Compile Include="TilesUtils.cs" />
+    <Page Include="Styles\Styles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="TileContainer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
