@@ -28,17 +28,17 @@ namespace Home.NET
             var container = new TileContainer(TileContainer.ContainerTypes.NormalToWide);
 
             TileInfo i = new TileInfo();
-            i.Action = new TileAction() { Action = TileAction.Actions.ProcessStart, ProcessStartName = "explorer" };
+            i.Action = new TileAction() { Action = TileAction.Actions.ProcessStart, ProcessStartName = "C:\\Windows\\explorer.exe" };
             i.ColorByte = new byte[] { 255, 4, 17, 75 };
-            i.Text = "My Computer";
+            i.Text = "Explorer";
             i.Size = Tile.TileSizes.Normal;
 
             container.AddTile(new Tile(i));
 
             i = new TileInfo();
-            i.Action = new TileAction() { Action = TileAction.Actions.ProcessStart, ProcessStartName = "explorer" };
+            i.Action = new TileAction() { Action = TileAction.Actions.ProcessStart, ProcessStartName = "Home.NET.exe" };
             i.ColorByte = new byte[] { 255, 75, 156, 206 };
-            i.Text = "Settings";
+            i.Text = "Home.NET";
             i.Size = Tile.TileSizes.Normal;
 
             container.AddTile(new Tile(i));
@@ -51,6 +51,9 @@ namespace Home.NET
             b.TileColor = Colors.Green;
             c.TileColor = Colors.Blue;
             d.TileColor = Colors.Yellow;
+            c.TileAction.ProcessStartName = "C:\\Windows\\System32\\control.exe";
+            c.TileAction.Action = TileAction.Actions.ProcessStart;
+            c.TileText = "Control Panel";
 
             TileContainer cont = new TileContainer(TileContainer.ContainerTypes.SmallToNormal);
             cont.AddTile(a);

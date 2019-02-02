@@ -296,6 +296,18 @@ namespace Home.NET.Tiles
                         img.FadeOut(300);
                 }
             }
+
+            if (TileSize == TileSizes.Small)
+            {
+                img.Width = 32;
+                img.Height = 32;
+            }
+            else
+            {
+                img.Width = 64;
+                img.Height = 64;
+            }
+
         }
 
         public static ImageSource IconToImage(System.Drawing.Icon icon)
