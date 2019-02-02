@@ -16,12 +16,12 @@
     </Window.Background>
     <Grid x:Name="MainGrid">
         <Tiles:TilesPanel x:Name="TilesPanel" Margin="0,53,0,26">
-            <Tiles:TilesPanel.OpacityMask>
+            <!--<Tiles:TilesPanel.OpacityMask>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
                     <GradientStop Offset="0.85" Color="Black"></GradientStop>
                     <GradientStop Offset="1" Color="Transparent"></GradientStop>
                 </LinearGradientBrush>
-            </Tiles:TilesPanel.OpacityMask>
+            </Tiles:TilesPanel.OpacityMask>-->
         </Tiles:TilesPanel>
         <RadioButton x:Name="btnMetro" Content="PanelStyle -&gt; Metro" HorizontalAlignment="Left" VerticalAlignment="Bottom" Foreground="White" Margin="10,0,0,3" IsChecked="True" Click="btnMetro_Click"/>
         <RadioButton Content="PanelStyle -&gt; Aero" HorizontalAlignment="Left" VerticalAlignment="Bottom" Foreground="White" Margin="146,0,0,3" Click="RadioButton_Click"/>
