@@ -85,19 +85,19 @@ namespace Home.NET.Tiles
 
                 if (ContainerPanel.Children.Count == 0)
                 {
-                    //tile.Margin = new Thickness(0, 0, Tile.TilePadding, 0);
+                    tile.Margin = new Thickness(0, 0, Tile.TilePadding, 0);
                 }
                 else if (ContainerPanel.Children.Count == 1)
                 {
-                    //tile.Margin = new Thickness(0, 0, 0, 0);
+                    tile.Margin = new Thickness(0, 0, 0, 0);
                 }
                 else if (ContainerPanel.Children.Count == 2)
                 {
-                    //tile.Margin = new Thickness(0, Tile.TilePadding, Tile.TilePadding, 0);
+                    tile.Margin = new Thickness(0, Tile.TilePadding, Tile.TilePadding, 0);
                 }
                 else if (ContainerPanel.Children.Count == 3)
                 {
-                    //tile.Margin = new Thickness(0, Tile.TilePadding, 0, 0);
+                    tile.Margin = new Thickness(0, Tile.TilePadding, 0, 0);
                 }
                 else // more than 4
                 {
