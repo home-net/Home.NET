@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Interop\DWMAPI.cs" />
+    <Compile Include="TileAnimation.cs" />
     <Compile Include="TileContainer.xaml.cs">
       <DependentUpon>TileContainer.xaml</DependentUpon>
     </Compile>
