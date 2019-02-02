@@ -9,8 +9,8 @@
              Loaded="UserControl_Loaded"
              d:DesignHeight="128" d:DesignWidth="128">
     <Grid SizeChanged="Grid_SizeChanged">
-        <Grid x:Name="GridCollisionX" MouseLeftButtonUp="GridCollision_MouseLeftButtonUp">
-            <Rectangle x:Name="RectCollision" Fill="#FF191919" IsHitTestVisible="False"></Rectangle>
+        <Grid x:Name="GridCollisionX">
+            <Rectangle x:Name="RectCollision" Fill="#FF191919" MouseLeftButtonUp="GridCollision_MouseLeftButtonUp"></Rectangle>
         </Grid>
         <Grid x:Name="BorderGrid" Visibility="Visible" IsHitTestVisible="False">
             <stuff:BorderMetro></stuff:BorderMetro>
