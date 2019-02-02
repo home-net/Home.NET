@@ -78,6 +78,10 @@ namespace Home.NET.Tiles
                 tiles.Margin = new Thickness(Tile.TilePadding / 2);
                 MainGrid.Children.Add(tiles);
             }
+
+            if(IsLoaded)
+                foreach(var tile in tiles.Tiles)
+                    tile.FadeIn(450);
         }
 
         public void AddTile(Tile tile)
@@ -118,8 +122,11 @@ namespace Home.NET.Tiles
                 (obj as Tile).Margin = new Thickness(Tile.TilePadding / 2);
             else if (obj is TileContainer)
                 (obj as TileContainer).Margin = new Thickness(Tile.TilePadding / 2);
-
+            
             MainGrid.Children.Add(obj);
+
+            if (IsLoaded)
+                tile.FadeIn(450);
         }
 
         public void DeleteTile(Tile tile)
