@@ -1,6 +1,7 @@
 ﻿using Home.NET.Tiles;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -63,8 +64,23 @@ namespace Home.NET
 
             TilesPanel.AddTile(cont);
 
+            foreach (var desk in Directory.EnumerateFiles(Environment.GetFolderPath(Environment.SpecialFolder.Desktop)))
+            {
+                TileInfo deskTile = new TileInfo();
+
+                deskTile.Action.Action = TileAction.Actions.ProcessStart;
+                deskTile.Action.ProcessStartName = desk;
+                deskTile.Text = new FileInfo(desk).Name;
+                deskTile.Size = Tile.TileSizes.Wide;
+
+                TilesPanel.AddTile(new Tile(deskTile));
+            }
+
+
             for (int xx = 0; xx < 10; xx++)
                 TilesPanel.AddTestTile("Tile #" + xx);
+
+
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
