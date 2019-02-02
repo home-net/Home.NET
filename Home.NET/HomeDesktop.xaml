@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Loaded="Window_Loaded"
         xmlns:Tiles="clr-namespace:Home.NET.Tiles;assembly=Home.NET.Tiles"
-        Title="HomeDesktop" Height="556" Width="904">
+        Title="HomeDesktop" Height="556" Width="904" WindowState="Maximized">
     <Window.Background>
         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
             <GradientStop Color="#FF171717" Offset="1"/>
