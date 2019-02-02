@@ -23,19 +23,7 @@ namespace Home.NET
         public HomeDesktop()
         {
             InitializeComponent();
-        }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            //Home.NET.Stuff.PickColor Pick = new Stuff.PickColor(Color.FromArgb(255, 0, 142, 143), true);
-            //if ((bool)Pick.ShowDialog())
-            //{
-            //    if (Pick.ResultIsAero)
-            //        Tiles.DwmApi.Glass(this);
-            //    else
-            //        this.Background = new SolidColorBrush(Pick.ResultColor);
-            //}
-            this.Background = new SolidColorBrush(Color.FromArgb(255, 0, 142, 143));
 
             var container = new TileContainer(TileContainer.ContainerTypes.NormalToWide);
 
@@ -72,6 +60,21 @@ namespace Home.NET
 
             TilesPanel.AddTile(cont);
 
+            for (int xx = 0; xx < 10; xx++)
+                TilesPanel.AddTestTile("Tile #" + xx);
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            //Home.NET.Stuff.PickColor Pick = new Stuff.PickColor(Color.FromArgb(255, 0, 142, 143), true);
+            //if ((bool)Pick.ShowDialog())
+            //{
+            //    if (Pick.ResultIsAero)
+            //        Tiles.DwmApi.Glass(this);
+            //    else
+            //        this.Background = new SolidColorBrush(Pick.ResultColor);
+            //}
+            this.Background = new SolidColorBrush(Color.FromArgb(255, 0, 142, 143));
             //this.Background = new SolidColorBrush(Colors.Green);
         }
 

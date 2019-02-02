@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Home.NET.Tiles.Extensions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -169,6 +170,16 @@ namespace Home.NET.Tiles
                     Width = normalSize.Width;
                 }
             }
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            //int dur = 500;
+            //foreach(var tile in Tiles)
+            //{
+            //    tile.FadeIn(dur);
+            //    dur += 500;
+            //}
         }
     }
 }

@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:Home.NET.Tiles"
              xmlns:stuff="clr-namespace:Home.NET.Tiles.Stuff"
              mc:Ignorable="d" 
+             Loaded="UserControl_Loaded"
              d:DesignHeight="128" d:DesignWidth="128">
     <Grid SizeChanged="Grid_SizeChanged">
         <Grid x:Name="GridCollisionX" MouseLeftButtonUp="GridCollision_MouseLeftButtonUp">

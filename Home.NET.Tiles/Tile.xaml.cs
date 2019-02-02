@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Home.NET.Tiles.Extensions;
 
 namespace Home.NET.Tiles
 {
@@ -194,6 +195,10 @@ namespace Home.NET.Tiles
                 GridName.Visibility = Visibility.Hidden;
             else
                 GridName.Visibility = Visibility.Visible;
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
         }
     }
 

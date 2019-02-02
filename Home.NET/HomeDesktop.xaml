@@ -15,7 +15,7 @@
         </LinearGradientBrush>
     </Window.Background>
     <Grid x:Name="MainGrid">
-        <Tiles:TilesPanel x:Name="TilesPanel" Margin="0,53,0,26" RenderTransformOrigin="0.5,0.5">
+        <Tiles:TilesPanel x:Name="TilesPanel" Margin="0,53,0,26">
             <Tiles:TilesPanel.OpacityMask>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
                     <GradientStop Offset="0.85" Color="Black"></GradientStop>
