@@ -235,6 +235,8 @@ namespace Home.NET.Tiles
                 // Small
                 if (containerType == ContainerTypes.SmallToNormal)
                 {
+                    DebugRect.Stroke = new SolidColorBrush(Colors.Red);
+
                     var normalSize = EnumToSize(TileSizes.Normal);
                     Height = normalSize.Height;
                     Width = normalSize.Width;
@@ -252,6 +254,8 @@ namespace Home.NET.Tiles
                 // Normal
                 else if (containerType == ContainerTypes.NormalToWide)
                 {
+                    DebugRect.Stroke = new SolidColorBrush(Colors.Green);
+
                     var wideSize = EnumToSize(TileSizes.Wide);
                     Height = wideSize.Height;
                     Width = wideSize.Width;
@@ -269,6 +273,12 @@ namespace Home.NET.Tiles
                 // Wide & Big
                 else if (containerType == ContainerTypes.WideToBig || containerType == ContainerTypes.Big)
                 {
+                    if (containerType == ContainerTypes.WideToBig)
+                        DebugRect.Stroke = new SolidColorBrush(Colors.Blue);
+                    else
+                        DebugRect.Stroke = new SolidColorBrush(Colors.Yellow);
+
+
                     var bigSize = EnumToSize(TileSizes.Big);
                     Height = bigSize.Height;
                     Width = bigSize.Width;
