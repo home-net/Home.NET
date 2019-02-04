@@ -39,7 +39,7 @@
             <Image x:Name="BackgroundMedia" IsHitTestVisible="False" Visibility="Hidden"></Image>
             <Image x:Name="IconMedia" IsHitTestVisible="False" Visibility="Hidden"></Image>
             <Canvas x:Name="GlowCanvas" IsHitTestVisible="False">
-                <Grid x:Name="MouseGlow" IsHitTestVisible="False" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Height="75">
+                <Grid x:Name="MouseGlow" IsHitTestVisible="False" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Height="200">
                     <Grid.Background>
                         <RadialGradientBrush>
                             <GradientStop Offset="1"/>

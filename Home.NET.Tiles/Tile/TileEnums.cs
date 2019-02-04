@@ -7,6 +7,23 @@ using System.Windows.Media;
 
 namespace Home.NET.Tiles
 {
+    public class TilesParsedBySize
+    {
+        public List<Tile> Small, Normal, Big, Wide;
+
+        /// <summary>
+        /// Parse Tiles by Size
+        /// </summary>
+        /// <param name="elements">Instances of tiles</param>
+        public TilesParsedBySize(Tile[] elements)
+        {
+            Small = TileEnums.ParseTilesBySize(elements, TileEnums.TileSizes.Small);
+            Normal = TileEnums.ParseTilesBySize(elements, TileEnums.TileSizes.Normal);
+            Wide = TileEnums.ParseTilesBySize(elements, TileEnums.TileSizes.Wide);
+            Big = TileEnums.ParseTilesBySize(elements, TileEnums.TileSizes.Big);
+        }
+    }
+
     public class TileEnums
     {
         public static Color TileDefaultColor = Color.FromArgb(255, 25, 25, 25);
@@ -42,6 +59,20 @@ namespace Home.NET.Tiles
 
             return TileSizes.Small;
         }
+
+        public static List<Tile> ParseTilesBySize(Tile[] tiles, TileSizes size)
+        {
+            List<Tile> result = new List<Tile>();
+
+            foreach (var tile in tiles)
+            {
+                if (tile.TileSize == size)
+                    result.Add(tile);
+            }
+
+            return result;
+        }
+
         public enum MediaTypes
         {
             None,

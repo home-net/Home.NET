@@ -278,6 +278,11 @@ namespace Home.NET.Tiles
             
         }
 
+        public override string ToString()
+        {
+            return "{Tile: \"" + TileText + "\", Size = " + TileSize.ToString() + ", Action = " + TileAction.Action.ToString() + "}";
+        }
+
         private void GridMouseCollision_MouseMove(object sender, MouseEventArgs e)
         {
             var pos = e.GetPosition(GlowCanvas);

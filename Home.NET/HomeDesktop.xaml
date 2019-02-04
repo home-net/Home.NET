@@ -26,5 +26,7 @@
         <RadioButton x:Name="btnMetro" Content="PanelStyle -&gt; Metro" HorizontalAlignment="Left" VerticalAlignment="Bottom" Foreground="White" Margin="10,0,0,3" IsChecked="True" Click="btnMetro_Click"/>
         <RadioButton Content="PanelStyle -&gt; Aero" HorizontalAlignment="Left" VerticalAlignment="Bottom" Foreground="White" Margin="146,0,0,3" Click="RadioButton_Click"/>
         <Button Content="add test tile" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="130" Margin="286,401,0,-3" Click="Button_Click"/>
+        <TextBox x:Name="cntDebugText" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="120" Margin="421,0,0,-6"/>
+        <Button x:Name="cntDebug" Content="debug this container" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="228" Margin="551,0,0,-5" Click="CntDebug_Click"/>
     </Grid>
 </Window>

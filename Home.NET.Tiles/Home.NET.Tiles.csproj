@@ -51,7 +51,7 @@
   <ItemGroup>
     <Compile Include="Interop\DWMAPI.cs" />
     <Compile Include="TileAnimation.cs" />
-    <Compile Include="TileContainer.xaml.cs">
+    <Compile Include="Container\TileContainer.xaml.cs">
       <DependentUpon>TileContainer.xaml</DependentUpon>
     </Compile>
     <Compile Include="Stuff\BorderAero.xaml.cs">
@@ -60,10 +60,11 @@
     <Compile Include="Stuff\BorderMetro.xaml.cs">
       <DependentUpon>BorderMetro.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TilesPanel\TilesPanelEnums.cs" />
     <Compile Include="Tile\Tile.xaml.cs">
       <DependentUpon>Tile.xaml</DependentUpon>
     </Compile>
-    <Compile Include="TilesPanel.xaml.cs">
+    <Compile Include="TilesPanel\TilesPanel.xaml.cs">
       <DependentUpon>TilesPanel.xaml</DependentUpon>
     </Compile>
     <Compile Include="TilesUtils.cs" />
@@ -72,7 +73,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="TileContainer.xaml">
+    <Page Include="Container\TileContainer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -88,7 +89,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="TilesPanel.xaml">
+    <Page Include="TilesPanel\TilesPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -111,6 +112,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <Compile Include="Container\ContainerEnums.cs" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

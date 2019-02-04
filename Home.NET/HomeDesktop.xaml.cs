@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static Home.NET.Tiles.TileEnums;
 
 namespace Home.NET
 {
@@ -25,60 +26,20 @@ namespace Home.NET
         {
             InitializeComponent();
 
-
-            var container = new TileContainer(TileContainer.ContainerTypes.NormalToWide);
-
-            TileInfo i = new TileInfo();
-            i.Action = new TileAction() { Action = TileAction.Actions.ProcessStart, ProcessStartName = "C:\\Windows\\explorer.exe" };
-            i.ColorByte = new byte[] { 255, 4, 17, 75 };
-            i.Text = "Explorer";
-            i.Size = Tile.TileSizes.Normal;
-
-            container.AddTile(new Tile(i));
-
-            i = new TileInfo();
-            i.Action = new TileAction() { Action = TileAction.Actions.ProcessStart, ProcessStartName = "Home.NET.exe" };
-            i.ColorByte = new byte[] { 255, 75, 156, 206 };
-            i.Text = "Home.NET";
-            i.Size = Tile.TileSizes.Normal;
-
-            container.AddTile(new Tile(i));
-
-            TilesPanel.AddTile(container);
-
-            TileInfo small = new TileInfo() { Size = Tile.TileSizes.Small };
-            Tile a = new Tile(small), b = new Tile(small), c = new Tile(small), d = new Tile(small);
-            a.TileColor = Colors.Red;
-            b.TileColor = Colors.Green;
-            c.TileColor = Colors.Blue;
-            d.TileColor = Colors.Yellow;
-            c.TileAction.ProcessStartName = "C:\\Windows\\System32\\control.exe";
-            c.TileAction.Action = TileAction.Actions.ProcessStart;
-            c.TileText = "Control Panel";
-
-            TileContainer cont = new TileContainer(TileContainer.ContainerTypes.SmallToNormal);
-            cont.AddTile(a);
-            cont.AddTile(b);
-            cont.AddTile(c);
-            cont.AddTile(d);
-
-            TilesPanel.AddTile(cont);
-
             foreach (var desk in Directory.EnumerateFiles(Environment.GetFolderPath(Environment.SpecialFolder.Desktop)))
             {
-                TileInfo deskTile = new TileInfo();
+                Tile tile = new Tile();
+                tile.TileAction.Action = TileAction.Actions.ProcessStart;
+                tile.TileAction.ProcessStartName = desk;
+                tile.TileText = new FileInfo(desk).Name;
+                tile.TileSize = TileSizes.Small;
 
-                deskTile.Action.Action = TileAction.Actions.ProcessStart;
-                deskTile.Action.ProcessStartName = desk;
-                deskTile.Text = new FileInfo(desk).Name;
-                deskTile.Size = Tile.TileSizes.Wide;
-
-                TilesPanel.AddTile(new Tile(deskTile));
+                TilesPanel.Add(tile);
             }
 
 
-            for (int xx = 0; xx < 10; xx++)
-                TilesPanel.AddTestTile("Tile #" + xx);
+            //for (int xx = 0; xx < 50; xx++)
+            //    TilesPanel.AddTestTile("Tile #" + xx);
 
 
         }
@@ -99,17 +60,22 @@ namespace Home.NET
 
         private void RadioButton_Click(object sender, RoutedEventArgs e)
         {
-            TilesPanel.PanelStyle = Tiles.Tile.TileStyles.Aero;
+            TilesPanel.PanelStyle = TileStyles.Aero;
         }
 
         private void btnMetro_Click(object sender, RoutedEventArgs e)
         {
-            TilesPanel.PanelStyle = Tiles.Tile.TileStyles.Metro;
+            TilesPanel.PanelStyle = TileStyles.Metro;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             TilesPanel.AddTestTile("Test Tile");
+        }
+
+        private void CntDebug_Click(object sender, RoutedEventArgs e)
+        {
+            TilesPanel.DebugContainer(cntDebugText.Text);
         }
     }
 }
