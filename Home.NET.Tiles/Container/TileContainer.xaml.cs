@@ -131,7 +131,7 @@ namespace Home.NET.Tiles
 
         public override string ToString()
         {
-            return "{TileContainer: \"" + ContainerName + "\", ContainerType = " + ContainerType.ToString() + "}";
+            return "TileContainer: \"" + ContainerName + "\", ContainerType = " + ContainerType.ToString();
         }
 
         public string ContainerName = TilesUtils.RandomString(5);
