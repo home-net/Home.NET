@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static Home.NET.Tiles.TileEnums;
 
 namespace Home.NET.Tiles
 {
@@ -63,7 +64,7 @@ namespace Home.NET.Tiles
 
                 if (ContainerPanel.Children.Count == 0)
                 {
-                    tile.Margin = new Thickness(0, 0, Tile.TilePadding, 0);
+                    tile.Margin = new Thickness(0, 0, TilePadding, 0);
                 }
                 else if (ContainerPanel.Children.Count == 1)
                 {
@@ -86,7 +87,7 @@ namespace Home.NET.Tiles
 
                 if (ContainerPanel.Children.Count == 0)
                 {
-                    tile.Margin = new Thickness(0, 0, Tile.TilePadding, 0);
+                    tile.Margin = new Thickness(0, 0, TilePadding, 0);
                 }
                 else if (ContainerPanel.Children.Count == 1)
                 {
@@ -94,11 +95,11 @@ namespace Home.NET.Tiles
                 }
                 else if (ContainerPanel.Children.Count == 2)
                 {
-                    tile.Margin = new Thickness(0, Tile.TilePadding, Tile.TilePadding, 0);
+                    tile.Margin = new Thickness(0, TilePadding, TilePadding, 0);
                 }
                 else if (ContainerPanel.Children.Count == 3)
                 {
-                    tile.Margin = new Thickness(0, Tile.TilePadding, 0, 0);
+                    tile.Margin = new Thickness(0, TilePadding, 0, 0);
                 }
                 else // more than 4
                 {
@@ -137,14 +138,14 @@ namespace Home.NET.Tiles
 
                         if (o is Tile)
                         {
-                            (o as Tile).TileSize = Tile.TileSizes.Normal;
+                            (o as Tile).TileSize = TileSizes.Normal;
                         }
 
                         if (i >= 3)
                             RemoveTile(o);
                     }
 
-                    var normalSize = Tile.EnumToSize(Tile.TileSizes.Wide);
+                    var normalSize = EnumToSize(TileSizes.Wide);
                     Height = normalSize.Height;
                     Width = normalSize.Width;
                 }
@@ -158,14 +159,14 @@ namespace Home.NET.Tiles
 
                         if (o is Tile)
                         {
-                            (o as Tile).TileSize = Tile.TileSizes.Small;
+                            (o as Tile).TileSize = TileSizes.Small;
                         }
                         
                         if (i >= 5)
                             RemoveTile(o as Tile);
                     }
 
-                    var normalSize = Tile.EnumToSize(Tile.TileSizes.Normal);
+                    var normalSize = EnumToSize(TileSizes.Normal);
                     Height = normalSize.Height;
                     Width = normalSize.Width;
                 }
