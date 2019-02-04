@@ -19,7 +19,7 @@
             <Rectangle>
                 <Rectangle.Fill>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="#7F000000" Offset="1"/>
+                        <GradientStop Color="#00000000" Offset="1"/>
                         <GradientStop Color="#00000000" Offset="0.7"/>
                     </LinearGradientBrush>
                 </Rectangle.Fill>

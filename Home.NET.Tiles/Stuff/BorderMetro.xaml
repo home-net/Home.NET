@@ -7,6 +7,6 @@
              mc:Ignorable="d" 
              d:DesignHeight="256" d:DesignWidth="256" IsHitTestVisible="False">
     <Grid>
-        <Border BorderBrush="#26FFFFFF" BorderThickness="3"/>
+        <Border BorderBrush="#0CFFFFFF" BorderThickness="2"/>
     </Grid>
 </UserControl>
