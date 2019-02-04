@@ -388,47 +388,6 @@ namespace Home.NET.Tiles
         }
     }
 
-    [Serializable]
-    public class TileInfo
-    {
-        public double Scale = 1;
-        public Tile.TileStyles Style = Tile.TileStyles.Metro;
-        public Tile.TileSizes Size = Tile.TileSizes.Normal;
-        public string Text = "Tile";
-        public TileAction Action = new TileAction();
-
-        public enum MediaTypes
-        {
-            None,
-            File,
-            ProcessFile,
-            Bytes
-        }
-
-        public MediaTypes Icon = MediaTypes.None;
-        public MediaTypes Image = MediaTypes.None;
-
-        public byte[] ColorByte = { 255, 25, 25, 25 }; // dark gray
-
-        public Color Color
-        {
-            get => Color.FromArgb(ColorByte[0], ColorByte[1], ColorByte[2], ColorByte[3]);
-            set => ColorByte = new byte[] { value.A, value.R, value.G, value.B };
-        }
-
-
-        public TileInfo() { }
-        public TileInfo(Tile tile)
-        {
-            Scale = tile.TileScale;
-            Style = tile.TileStyle;
-            Size = tile.TileSize;
-            Action = tile.TileAction;
-            Color = tile.TileColor;
-            Icon = tile.MediaTypeIcon;
-            Image = tile.MediaTypeBackground;
-        }
-    }
 
     [Serializable]
     public class TileAction
