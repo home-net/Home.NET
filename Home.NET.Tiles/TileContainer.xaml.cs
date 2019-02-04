@@ -1,1 +1,0 @@
-                    Width = normalSize.Width;
