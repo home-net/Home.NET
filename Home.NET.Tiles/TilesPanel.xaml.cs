@@ -21,6 +21,22 @@ namespace Home.NET.Tiles
     /// </summary>
     public partial class TilesPanel : UserControl
     {
+        public List<TileContainer> Containers
+        {
+            get
+            {
+                List<TileContainer> result = new List<TileContainer>();
+
+                foreach(var c in MainGrid.Children)
+                {
+                    if (c is TileContainer)
+                        result.Add((TileContainer)c);
+                }
+
+                return result;
+            }
+        }
+
         public static Random tRand = new Random();
 
         private TileStyles panelStyle = TileStyles.Metro;
