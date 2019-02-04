@@ -178,7 +178,7 @@ namespace Home.NET.Tiles
                 ContainerPanel.Orientation = padding.Orientation;
                 ContainerPanel.Children.Add(tile);
 
-                Debugger.Log(0, Debugger.DefaultCategory, this + " += " + tile);
+                Debugger.Log(0, Debugger.DefaultCategory, this + " += " + tile + Environment.NewLine);
             }
         }
 
@@ -197,7 +197,7 @@ namespace Home.NET.Tiles
             ContainerPanel.Orientation = padding.Orientation;
             ContainerPanel.Children.Add(container);
 
-            Debugger.Log(0, Debugger.DefaultCategory, this + " += " + container);
+            Debugger.Log(0, Debugger.DefaultCategory, this + " += " + container + Environment.NewLine);
         }
         
         /// <summary>

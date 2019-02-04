@@ -150,7 +150,7 @@ namespace Home.NET.Tiles
 
             for (int i = 0; i < containers.Length; i++)
             {
-                Debugger.Log(0, Debugger.DefaultCategory, "Panel += " + containers[i]);
+                Debugger.Log(0, Debugger.DefaultCategory, "Panel += " + containers[i] + Environment.NewLine);
 
                 var compat = SearchForCompatibleContainer(containers[i], ignore);
                 if (compat != null)
@@ -248,7 +248,7 @@ namespace Home.NET.Tiles
                 }
             }
 
-            Debugger.Log(0, Debugger.DefaultCategory, $"Container '{name}' not found");
+            Debugger.Log(0, Debugger.DefaultCategory, $"Container '{name}' not found" + Environment.NewLine);
         }
         
         public void Delete(Tile tile)
