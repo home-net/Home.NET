@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static Home.NET.Tiles.TileEnums;
 
 namespace Home.NET.Tiles
 {
@@ -20,8 +21,8 @@ namespace Home.NET.Tiles
     /// </summary>
     public partial class TilesPanel : UserControl
     {
-        private Tile.TileStyles panelStyle = Tile.TileStyles.Metro;
-        public Tile.TileStyles PanelStyle
+        private TileStyles panelStyle = TileStyles.Metro;
+        public TileStyles PanelStyle
         {
             get => panelStyle;
             set
@@ -69,13 +70,13 @@ namespace Home.NET.Tiles
                 big.ContainerPanel.Children.Add(tiles);
                 big.ParentPanel = this;
 
-                big.Margin = new Thickness(Tile.TilePadding / 2);
+                big.Margin = new Thickness(TilePadding / 2);
 
                 MainGrid.Children.Add(big);
             }
             else
             {
-                tiles.Margin = new Thickness(Tile.TilePadding / 2);
+                tiles.Margin = new Thickness(TilePadding / 2);
                 MainGrid.Children.Add(tiles);
             }
 
@@ -91,7 +92,7 @@ namespace Home.NET.Tiles
 
             UIElement obj = tile;
 
-            if (tile.TileSize == Tile.TileSizes.Small)
+            if (tile.TileSize == TileSizes.Small)
             {
                 var container = new TileContainer();
 
@@ -107,7 +108,7 @@ namespace Home.NET.Tiles
 
                 obj = big;
             }
-            else if (tile.TileSize == Tile.TileSizes.Normal)
+            else if (tile.TileSize == TileSizes.Normal)
             {
                 var container = new TileContainer();
 
@@ -119,9 +120,9 @@ namespace Home.NET.Tiles
             }
 
             if (obj is Tile)
-                (obj as Tile).Margin = new Thickness(Tile.TilePadding / 2);
+                (obj as Tile).Margin = new Thickness(TilePadding / 2);
             else if (obj is TileContainer)
-                (obj as TileContainer).Margin = new Thickness(Tile.TilePadding / 2);
+                (obj as TileContainer).Margin = new Thickness(TilePadding / 2);
             
             MainGrid.Children.Add(obj);
 
@@ -138,7 +139,10 @@ namespace Home.NET.Tiles
 
         public void AddTestTile(string text)
         {
+            Tile tile = new Tile()
+            {
 
+            };
             TileInfo i = new TileInfo();
             i.Text = text;
             i.ColorByte = new byte[] { 255, (byte)c.Next(0, 255), (byte)c.Next(0, 255), (byte)c.Next(0, 255) };

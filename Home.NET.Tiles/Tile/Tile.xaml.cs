@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Home.NET.Tiles.Extensions;
+using static Home.NET.Tiles.TileEnums;
 
 namespace Home.NET.Tiles
 {
@@ -23,58 +24,11 @@ namespace Home.NET.Tiles
     /// </summary>
     public partial class Tile : UserControl
     {
-        public System.Timers.Timer UpdateTimer = new System.Timers.Timer(500);
-
-        public const int TilePadding = 8;
-        public const int TileMaxSize = 248;
-
-        public enum TileSizes
-        {
-            Small,
-            Normal,
-            Wide,
-            Big
-        }
-
-        public enum TileStyles
-        {
-            Aero,
-            Metro,
-            // Fluent
-        }
-
-        // 1366x768 - original screen size
-        public static Size EnumToSize(TileSizes size)
-        {
-            if (size == TileSizes.Small)
-                return new Size(56, 56);
-            else if (size == TileSizes.Normal)
-                return new Size(120, 120);
-            else if (size == TileSizes.Wide)
-                return new Size(248, 120);
-            else if (size == TileSizes.Big)
-                return new Size(248, 248);
-
-            return EnumToSize(TileSizes.Normal);
-        }
-
-        public static TileSizes SizeToEnum(Size size)
-        {
-            if (size.Width == 56 && size.Height == 56)
-                return TileSizes.Small;
-            else if (size.Width == 120 && size.Height == 120)
-                return TileSizes.Normal;
-            else if (size.Width == 248 && size.Height == 120)
-                return TileSizes.Wide;
-            else if (size.Width == 248 && size.Height == 248)
-                return TileSizes.Big;
-
-            return TileSizes.Small;
-        }
+        private System.Timers.Timer UpdateTimer = new System.Timers.Timer(500);
 
         private double tileScale = 1;
 
-        public Tile(TileInfo info = null)
+        public Tile()
         {
             InitializeComponent();
 
@@ -82,9 +36,6 @@ namespace Home.NET.Tiles
             MouseGlow.Opacity = 0;
 
             TileSize = TileSizes.Normal;
-
-            if (info != null)
-                ApplyTileInfo(info);
         }
 
         public string TileText
@@ -92,24 +43,9 @@ namespace Home.NET.Tiles
             get => TileTextBlock.Text;
             set => TileTextBlock.Text = value;
         }
-
-        public void ApplyTileInfo(TileInfo info)
-        {
-            TileStyle = info.Style;
-            TileScale = info.Scale;
-            TileSize = info.Size;
-            TileAction = info.Action;
-            TileText = info.Text;
-            TileColor = info.Color;
-
-            MediaTypeBackground = info.Image;
-            MediaTypeIcon = info.Icon;
-
-            UpdateActions();
-        }
-
-        private TileInfo.MediaTypes mediaTypeBackground = TileInfo.MediaTypes.None;
-        private TileInfo.MediaTypes mediaTypeIcon = TileInfo.MediaTypes.None;
+        
+        private MediaTypes mediaTypeBackground = MediaTypes.None;
+        private MediaTypes mediaTypeIcon = MediaTypes.None;
 
         public Color TileColor
         {
@@ -137,11 +73,11 @@ namespace Home.NET.Tiles
 
             if (TileAction.Action == TileAction.Actions.ProcessStart)
             {
-                MediaTypeIcon = TileInfo.MediaTypes.ProcessFile;
+                MediaTypeIcon = MediaTypes.ProcessFile;
             }
             else if (TileAction.Action == TileAction.Actions.None)
             {
-                MediaTypeIcon = TileInfo.MediaTypes.Bytes;
+                MediaTypeIcon = MediaTypes.Bytes;
             }
         }
 
@@ -214,7 +150,7 @@ namespace Home.NET.Tiles
         private ImageSource customMediaIcon = null;
         private ImageSource customMediaBackground = null;
 
-        public TileInfo.MediaTypes MediaTypeBackground
+        public MediaTypes MediaTypeBackground
         {
             get => mediaTypeBackground;
             set
@@ -223,7 +159,7 @@ namespace Home.NET.Tiles
                 TileUpdateImage(IconMedia, value, CustomMediaBackground);
             }
         }
-        public TileInfo.MediaTypes MediaTypeIcon
+        public MediaTypes MediaTypeIcon
         {
             get => mediaTypeIcon;
             set
@@ -252,16 +188,16 @@ namespace Home.NET.Tiles
             }
         }
 
-        public void TileUpdateImage(Image img, TileInfo.MediaTypes type, ImageSource custom)
+        public void TileUpdateImage(Image img, MediaTypes type, ImageSource custom)
         {
-            if (type == TileInfo.MediaTypes.None)
+            if (type == MediaTypes.None)
             {
                 if (img.Opacity >= 1)
                 {
                     img.FadeOut(300);
                 }
             }
-            else if (type == TileInfo.MediaTypes.ProcessFile)
+            else if (type == MediaTypes.ProcessFile)
             {
                 var icon = System.Drawing.SystemIcons.Error;
                 FileInfo p = new FileInfo(TileAction.ProcessStartName);
@@ -281,7 +217,7 @@ namespace Home.NET.Tiles
                     img.FadeIn(300);
                 }
             }
-            else if (type == TileInfo.MediaTypes.Bytes)
+            else if (type == MediaTypes.Bytes)
             {
                 if (custom != null)
                 {

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Media;
+using static Home.NET.Tiles.TileEnums;
 
 namespace Home.NET.Xml
 {
@@ -12,18 +13,10 @@ namespace Home.NET.Xml
     public class TileInfo
     {
         public double Scale = 1;
-        public Tile.TileStyles Style = Tile.TileStyles.Metro;
-        public Tile.TileSizes Size = Tile.TileSizes.Normal;
+        public TileStyles Style = TileStyles.Metro;
+        public TileSizes Size = TileSizes.Normal;
         public string Text = "Tile";
         public TileAction Action = new TileAction();
-
-        public enum MediaTypes
-        {
-            None,
-            File,
-            ProcessFile,
-            Bytes
-        }
 
         public MediaTypes Icon = MediaTypes.None;
         public MediaTypes Image = MediaTypes.None;
